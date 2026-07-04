@@ -11,15 +11,12 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-const BAR_HEIGHT = 60;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [storyOpen, setStoryOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
   const previewRef = useRef<HTMLVideoElement>(null);
-  const [panelHeight, setPanelHeight] = useState(0);
 
   // Hide the navbar while scrolling down; reveal it on the first scroll up.
   useEffect(() => {
@@ -66,13 +63,6 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  useEffect(() => {
-    const measure = () => setPanelHeight(panelRef.current?.scrollHeight ?? 0);
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [open]);
-
   return (
     <>
       {/* Dimmed backdrop */}
@@ -89,10 +79,9 @@ export default function Navbar() {
         }`}
       >
         <div
-          className="pointer-events-auto relative mx-auto overflow-hidden rounded-xl border border-zinc-200/80 bg-white/85 text-zinc-950 backdrop-blur-2xl transition-[width,height] duration-500 ease-in-out [--menu-width-closed:100%] [--menu-width-open:100%] sm:[--menu-width-closed:330px] sm:[--menu-width-open:50vw] md:[--menu-width-open:70vw] xl:[--menu-width-open:50vw]"
+          className="pointer-events-auto relative mx-auto overflow-hidden rounded-xl border border-zinc-200/80 bg-white/85 text-zinc-950 backdrop-blur-2xl transition-[width] duration-500 ease-in-out [--menu-width-closed:100%] [--menu-width-open:100%] sm:[--menu-width-closed:330px] sm:[--menu-width-open:50vw] md:[--menu-width-open:70vw] xl:[--menu-width-open:50vw]"
           style={{
             width: open ? "var(--menu-width-open)" : "var(--menu-width-closed)",
-            height: open ? BAR_HEIGHT + panelHeight : BAR_HEIGHT,
           }}
         >
           {/* Top bar: logo / wordmark / toggle */}
@@ -148,88 +137,94 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Expanding panel */}
+          {/* Expanding panel — max-height transition to the content's natural
+              height (no JS measurement, so no leftover gap below the footer) */}
           <div
-            ref={panelRef}
-            className={`flex w-full flex-col justify-between gap-8 p-6 transition-opacity duration-300 ${
-              open ? "opacity-100 delay-150" : "opacity-0"
+            className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+              open ? "max-h-[80vh]" : "max-h-0"
             }`}
           >
-            <div className="grid grid-cols-4">
-              <div className="col-span-4 flex flex-col lg:col-span-2">
-                <nav className="col-auto flex flex-col items-start gap-2 pb-8 lg:pb-0">
-                  {NAV_LINKS.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-zinc-500"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-
-              {/* Story video card */}
-              <div className="col-span-4 lg:col-span-2">
-                <button
-                  type="button"
-                  aria-label="Watch our story"
-                  onClick={() => setStoryOpen(true)}
-                  className="group relative flex aspect-video w-full cursor-pointer items-center justify-center overflow-hidden rounded-md bg-black"
-                >
-                  {/* Lightweight muted preview; mounted only while the menu is
-                      open (and not covered by the story lightbox) so nothing
-                      plays or downloads in the background. */}
-                  {open && !storyOpen && (
-                    <video
-                      ref={previewRef}
-                      src="/our-story-preview.mp4"
-                      poster="/our-story-poster.jpg"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="absolute inset-0 h-full w-full object-cover opacity-80"
-                    />
-                  )}
-                  <span className="absolute z-10 inline-flex items-center gap-1.5 rounded-full border border-transparent bg-white/20 py-2.5 pl-2.5 pr-3.5 text-sm font-medium leading-none text-white backdrop-blur-xl transition-colors group-hover:bg-white group-hover:text-black">
-                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 p-1 backdrop-blur-xl transition-colors group-hover:bg-black">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-3 w-3"
-                        aria-hidden="true"
+            <div
+              className={`flex w-full flex-col gap-8 p-6 transition-opacity duration-300 ${
+                open ? "opacity-100 delay-150" : "opacity-0"
+              }`}
+            >
+              <div className="grid grid-cols-4 items-center">
+                <div className="col-span-4 flex flex-col lg:col-span-2">
+                  <nav className="col-auto flex flex-col items-start gap-2 pb-8 lg:pb-0">
+                    {NAV_LINKS.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        className="text-2xl font-medium tracking-tight transition-colors duration-200 hover:text-zinc-500"
                       >
-                        <polygon points="6 3 20 12 6 21 6 3" fill="white" />
-                      </svg>
-                    </span>
-                    <span>Our story</span>
-                  </span>
-                </button>
-              </div>
-            </div>
+                        {link.label}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
 
-            {/* Footer row */}
-            <div className="grid w-full grid-cols-4">
-              <div className="hidden lg:col-span-2 lg:block">
-                <p className="text-sm text-neutral-500">The voice intelligence company</p>
+                {/* Story video card */}
+                <div className="col-span-4 lg:col-span-2">
+                  <button
+                    type="button"
+                    aria-label="Watch our story"
+                    onClick={() => setStoryOpen(true)}
+                    className="group relative flex aspect-video max-h-44 w-full cursor-pointer items-center justify-center overflow-hidden rounded-md bg-black"
+                  >
+                    {/* Lightweight muted preview; mounted only while the menu is
+                        open (and not covered by the story lightbox) so nothing
+                        plays or downloads in the background. */}
+                    {open && !storyOpen && (
+                      <video
+                        ref={previewRef}
+                        src="/our-story-preview.mp4"
+                        poster="/our-story-poster.jpg"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 h-full w-full object-cover opacity-80"
+                      />
+                    )}
+                    <span className="absolute z-10 inline-flex items-center gap-1.5 rounded-full border border-transparent bg-white/20 py-2.5 pl-2.5 pr-3.5 text-sm font-medium leading-none text-white backdrop-blur-xl transition-colors group-hover:bg-white group-hover:text-black">
+                      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 p-1 backdrop-blur-xl transition-colors group-hover:bg-black">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-3 w-3"
+                          aria-hidden="true"
+                        >
+                          <polygon points="6 3 20 12 6 21 6 3" fill="white" />
+                        </svg>
+                      </span>
+                      <span>Our story</span>
+                    </span>
+                  </button>
+                </div>
               </div>
-              <div className="col-span-2 lg:col-span-1">
-                <p className="text-sm text-neutral-500">Launching 2026</p>
-              </div>
-              <div className="col-span-2 lg:col-span-1">
-                <a
-                  className="flex items-center justify-end text-right text-sm text-neutral-500"
-                  href="/beta-program"
-                >
-                  <span className="pr-1">Beta Application</span>
-                  <span className="inline-block h-2 w-2 animate-[blinking_0.75s_ease-in-out_infinite] rounded-full bg-yellow-300" />
-                </a>
+
+              {/* Footer row */}
+              <div className="grid w-full grid-cols-4">
+                <div className="hidden lg:col-span-2 lg:block">
+                  <p className="text-sm text-neutral-500">The voice intelligence company</p>
+                </div>
+                <div className="col-span-2 lg:col-span-1">
+                  <p className="text-sm text-neutral-500">Launching 2026</p>
+                </div>
+                <div className="col-span-2 lg:col-span-1">
+                  <a
+                    className="flex items-center justify-end text-right text-sm text-neutral-500"
+                    href="/beta-program"
+                  >
+                    <span className="pr-1">Beta Application</span>
+                    <span className="inline-block h-2 w-2 animate-[blinking_0.75s_ease-in-out_infinite] rounded-full bg-yellow-300" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

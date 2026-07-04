@@ -1,0 +1,197 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+/* Sticky-scroll showcase: the architecture image pins on the right and
+   crossfades between techs while the descriptions scroll past on the left.
+   The active step is whichever text block is nearest the viewport centre. */
+
+const TECHS = [
+  {
+    title: "Single Mic Enhancement",
+    spec: "Suppresses up to 70 dB SPL",
+    body: "Engineered for interiors — household noise, appliances, and nearby conversations fade away so your voice stays the focus.",
+    meter: { label: "Noise suppression", value: "70 dB", percent: 70 },
+    chips: ["Home", "Office", "Calls"],
+    image: "/tech/single-mic.png",
+  },
+  {
+    title: "Dual Mic Enhancement",
+    spec: "Suppresses up to 85 dB SPL",
+    body: "Built for multi-speaker environments. Isolates the user's voice and handles wind noise — even during high-speed travel.",
+    meter: { label: "Noise suppression", value: "85 dB", percent: 85 },
+    chips: ["Streets", "Travel", "Crowds"],
+    image: "/tech/dual-mic.png",
+  },
+  {
+    title: "Far-Field Enhancement",
+    spec: "Long-range voice capture",
+    body: "Clear speech from a distance for drive-through and outdoor scenarios — the HME use case — suppressing ambient noise and reverberation.",
+    meter: { label: "Capture range", value: "Distant voice", percent: 100 },
+    chips: ["Drive-through", "Kiosks", "Meeting rooms"],
+    image: "/tech/far-field.png",
+  },
+];
+
+export default function MicTechShowcase() {
+  const [active, setActive] = useState(0);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Drive the active step from scroll position (same reliable mechanic as
+  // the hero / benchmarks) — whichever step's centre is nearest the
+  // viewport centre wins.
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const mid = window.innerHeight / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        stepRefs.current.forEach((el, i) => {
+          if (!el) return;
+          const r = el.getBoundingClientRect();
+          const dist = Math.abs(r.top + r.height / 2 - mid);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        setActive(best);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <section className="px-4 py-28 lg:px-6" id="mic-tech">
+      <div className="mx-auto max-w-6xl">
+        {/* Header */}
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+          Adaptive Processing
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          Mic Technology Enhancements
+        </h2>
+        <p className="mt-3 max-w-2xl text-zinc-500">
+          IPHIPI&apos;s advanced audio processing adapts to any environment.
+        </p>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-20">
+          {/* Left — scrolling text steps */}
+          <div className="flex flex-col">
+            {TECHS.map((tech, i) => (
+              <div
+                key={tech.title}
+                ref={(el) => {
+                  stepRefs.current[i] = el;
+                }}
+                className={`flex min-h-[70vh] flex-col justify-center border-l-2 pl-6 transition-all duration-500 sm:pl-8 ${
+                  i === active
+                    ? "border-[#D9A544] opacity-100"
+                    : "border-zinc-200 opacity-40"
+                }`}
+              >
+                <p className="font-mono text-sm text-[#A87B24]">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {tech.title}
+                </h3>
+                <p className="mt-1.5 text-sm font-semibold text-[#A87B24]">{tech.spec}</p>
+                <p className="mt-4 max-w-md leading-relaxed text-zinc-500">{tech.body}</p>
+
+                {/* Meter */}
+                <div className="mt-8 max-w-sm">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-zinc-500">{tech.meter.label}</span>
+                    <span className="font-semibold text-[#A87B24]">{tech.meter.value}</span>
+                  </div>
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100">
+                    <div
+                      className="h-full rounded-full bg-[#D9A544] transition-[width] duration-700"
+                      style={{ width: i === active ? `${tech.meter.percent}%` : "0%" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Chips */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {tech.chips.map((chip) => (
+                    <span
+                      key={chip}
+                      className="rounded-full border border-zinc-200 px-3.5 py-1.5 text-xs text-zinc-600"
+                    >
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right — pinned crossfading image */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 flex h-[calc(100vh-8rem)] items-center">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-zinc-950">
+                {TECHS.map((tech, i) => (
+                  <Image
+                    key={tech.title}
+                    src={tech.image}
+                    alt={tech.title}
+                    fill
+                    loading="eager"
+                    sizes="(max-width: 1024px) 100vw, 560px"
+                    className={`object-contain transition-opacity duration-700 ${
+                      i === active ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+
+                {/* Progress dots */}
+                <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+                  {TECHS.map((tech, i) => (
+                    <span
+                      key={tech.title}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === active ? "w-6 bg-[#D9A544]" : "w-1.5 bg-white/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile — image sits inline under each step's text is overkill;
+              show the active image once, below the steps */}
+          <div className="lg:hidden">
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-zinc-950">
+              {TECHS.map((tech, i) => (
+                <Image
+                  key={tech.title}
+                  src={tech.image}
+                  alt={tech.title}
+                  fill
+                  loading="eager"
+                  sizes="100vw"
+                  className={`object-contain transition-opacity duration-700 ${
+                    i === active ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import AiTechHero from "@/components/AiTechHero";
+import MicTechShowcase from "@/components/MicTechShowcase";
 
 export const metadata: Metadata = {
   title: "AI Technologies — IPHIPI",
   description:
     "Proprietary environmental noise suppression and speech enhancement — engineered for every wearable category.",
 };
-
-const HIGHLIGHTS = [
-  { value: "16 ms", label: "Low-latency", sub: "End-to-end processing" },
-  { value: "5 mW", label: "Consumption", sub: "Always-on edge AI" },
-  { value: "500 KB", label: "On-chip", sub: "Memory footprint" },
-  { value: "Smart trigger", label: "Wake words", sub: "Branded voice triggers" },
-];
 
 const STAGES = [
   {
@@ -80,34 +74,6 @@ const STAGES = [
 ];
 
 const SEPARATION_INPUTS = ["Speaker voice", "Background noise", "Surrounding voices"];
-
-/* Images are the tech boards for now — swap for architecture diagrams */
-const MIC_TECHNOLOGIES = [
-  {
-    title: "Single Mic Enhancement",
-    spec: "Suppresses up to 70 dB SPL",
-    body: "Engineered for interiors — household noise, appliances, and nearby conversations fade away so your voice stays the focus.",
-    meter: { label: "Noise suppression", value: "70 dB", percent: 70 },
-    chips: ["Home", "Office", "Calls"],
-    image: "/tech/single-mic.png",
-  },
-  {
-    title: "Dual Mic Enhancement",
-    spec: "Suppresses up to 85 dB SPL",
-    body: "Built for multi-speaker environments. Isolates the user's voice and handles wind noise — even during high-speed travel.",
-    meter: { label: "Noise suppression", value: "85 dB", percent: 85 },
-    chips: ["Streets", "Travel", "Crowds"],
-    image: "/tech/dual-mic.png",
-  },
-  {
-    title: "Far-Field Enhancement",
-    spec: "Long-range voice capture",
-    body: "Clear speech from a distance for drive-through and outdoor scenarios — the HME use case — suppressing ambient noise and reverberation.",
-    meter: { label: "Capture range", value: "Distant voice", percent: 100 },
-    chips: ["Drive-through", "Kiosks", "Meeting rooms"],
-    image: "/tech/far-field.png",
-  },
-];
 
 /* Union of the deck (slide 8) and the Gamma doc lists — trim as needed */
 const FORM_FACTORS = [
@@ -238,84 +204,8 @@ export default function AiTechnologiesPage() {
 
       <AiTechHero />
 
-   <div className="mx-auto max-w-6xl px-4 lg:px-6">
-        {/* Mic technology enhancements */}
-        <section className="mt-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-            Adaptive Processing
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Mic Technology Enhancements
-          </h2>
-          <p className="mt-3 max-w-2xl text-zinc-500">
-            IPHIPI&apos;s advanced audio processing adapts to any environment.
-          </p>
-
-          <div className="mt-16 space-y-20 md:space-y-24">
-            {MIC_TECHNOLOGIES.map((tech, i) => (
-              <div
-                key={tech.title}
-                className="grid items-center gap-8 md:grid-cols-2 md:gap-14 lg:gap-20"
-              >
-                {/* Text — alternates sides each row */}
-                <div className={i % 2 === 1 ? "md:order-2" : ""}>
-                  <p className="font-mono text-sm text-[#A87B24]">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-                    {tech.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm font-semibold text-[#A87B24]">{tech.spec}</p>
-                  <p className="mt-4 max-w-md leading-relaxed text-zinc-500">{tech.body}</p>
-
-                  {/* Suppression / range meter */}
-                  <div className="mt-8 max-w-md">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-zinc-500">{tech.meter.label}</span>
-                      <span className="font-semibold text-[#A87B24]">{tech.meter.value}</span>
-                    </div>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100">
-                      <div
-                        className="h-full rounded-full bg-[#D9A544]"
-                        style={{ width: `${tech.meter.percent}%` }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Best-for chips */}
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {tech.chips.map((chip) => (
-                      <span
-                        key={chip}
-                        className="rounded-full border border-zinc-200 px-3.5 py-1.5 text-xs text-zinc-600"
-                      >
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Architecture image */}
-                <div
-                  className={`overflow-hidden rounded-[24px] border border-zinc-200/70 ${
-                    i % 2 === 1 ? "md:order-1" : ""
-                  }`}
-                >
-                  <Image
-                    src={tech.image}
-                    alt={tech.title}
-                    width={1536}
-                    height={1024}
-                    sizes="(max-width: 768px) 100vw, 560px"
-                    className="h-auto w-full"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-      </div>
+      {/* Mic technology enhancements — sticky-scroll showcase */}
+      <MicTechShowcase />
 
       {/* NDP 115 — audio processing flow (full-bleed, like the Partners band) */}
       <section className="mt-28 bg-[#0D0D0F] px-4 py-28 text-white lg:px-6">
