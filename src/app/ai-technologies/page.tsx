@@ -81,30 +81,31 @@ const STAGES = [
 
 const SEPARATION_INPUTS = ["Speaker voice", "Background noise", "Surrounding voices"];
 
+/* Images are the tech boards for now — swap for architecture diagrams */
 const MIC_TECHNOLOGIES = [
   {
     title: "Single Mic Enhancement",
     spec: "Suppresses up to 70 dB SPL",
     body: "Engineered for interiors — household noise, appliances, and nearby conversations fade away so your voice stays the focus.",
-    wave: [35, 55, 30, 60, 40, 65, 35, 50],
     meter: { label: "Noise suppression", value: "70 dB", percent: 70 },
     chips: ["Home", "Office", "Calls"],
+    image: "/tech/single-mic.png",
   },
   {
     title: "Dual Mic Enhancement",
     spec: "Suppresses up to 85 dB SPL",
     body: "Built for multi-speaker environments. Isolates the user's voice and handles wind noise — even during high-speed travel.",
-    wave: [45, 75, 35, 90, 50, 80, 40, 70, 55, 85, 30, 65],
     meter: { label: "Noise suppression", value: "85 dB", percent: 85 },
     chips: ["Streets", "Travel", "Crowds"],
+    image: "/tech/dual-mic.png",
   },
   {
     title: "Far-Field Enhancement",
     spec: "Long-range voice capture",
     body: "Clear speech from a distance for drive-through and outdoor scenarios — the HME use case — suppressing ambient noise and reverberation.",
-    wave: [25, 40, 30, 55, 35, 60, 30, 50, 25, 45, 30, 55, 35, 60, 25, 50],
     meter: { label: "Capture range", value: "Distant voice", percent: 100 },
     chips: ["Drive-through", "Kiosks", "Meeting rooms"],
+    image: "/tech/far-field.png",
   },
 ];
 
@@ -237,49 +238,78 @@ export default function AiTechnologiesPage() {
 
       <AiTechHero />
 
-      <div className="mx-auto max-w-6xl px-4 lg:px-6">
-        {/* Lead-in */}
-        <div className="mt-28">
-          <p className="max-w-2xl text-lg leading-relaxed text-zinc-500">
-            In a world saturated with persistent disruptions, achieving precise
-            and efficient communication poses a substantial obstacle. IPHIPI&apos;s
-            adaptive audio intelligence heralds a transformative era of voice
-            interaction — even within the noisiest of settings.
-          </p>
-          <Waveform
-            bars={[30, 55, 40, 70, 35, 60, 45, 80, 30, 65, 40, 55, 35, 70, 45, 60, 30, 50]}
-            className="mt-10 h-10"
-          />
-        </div>
-
-        {/* Redefine the auditory experience */}
+   <div className="mx-auto max-w-6xl px-4 lg:px-6">
+        {/* Mic technology enhancements */}
         <section className="mt-28">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-            Redefine the auditory experience
+            Adaptive Processing
           </p>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
-            Revolutionize every conversation
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Mic Technology Enhancements
           </h2>
-          <p className="mt-4 max-w-2xl leading-relaxed text-zinc-500">
-            In noisy environments like bustling cafés, busy offices, or crowded
-            streets, effective communication can be challenging. Conventional
-            devices struggle to isolate the intended conversation from the
-            surrounding noise. IPHIPI integrates microphone beamforming and
-            low-latency AI-based denoising algorithms to deliver exceptional
-            sound quality and clarity for every conversation.
+          <p className="mt-3 max-w-2xl text-zinc-500">
+            IPHIPI&apos;s advanced audio processing adapts to any environment.
           </p>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {HIGHLIGHTS.map((item) => (
+          <div className="mt-16 space-y-20 md:space-y-24">
+            {MIC_TECHNOLOGIES.map((tech, i) => (
               <div
-                key={item.label}
-                className="rounded-[20px] border border-zinc-200/70 bg-[#faf6ee] p-6 text-center"
+                key={tech.title}
+                className="grid items-center gap-8 md:grid-cols-2 md:gap-14 lg:gap-20"
               >
-                <p className="text-3xl font-semibold tracking-tight text-zinc-900">
-                  {item.value}
-                </p>
-                <p className="mt-2 font-medium text-zinc-800">{item.label}</p>
-                <p className="text-sm text-zinc-500">{item.sub}</p>
+                {/* Text — alternates sides each row */}
+                <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                  <p className="font-mono text-sm text-[#A87B24]">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                    {tech.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm font-semibold text-[#A87B24]">{tech.spec}</p>
+                  <p className="mt-4 max-w-md leading-relaxed text-zinc-500">{tech.body}</p>
+
+                  {/* Suppression / range meter */}
+                  <div className="mt-8 max-w-md">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-zinc-500">{tech.meter.label}</span>
+                      <span className="font-semibold text-[#A87B24]">{tech.meter.value}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100">
+                      <div
+                        className="h-full rounded-full bg-[#D9A544]"
+                        style={{ width: `${tech.meter.percent}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Best-for chips */}
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {tech.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        className="rounded-full border border-zinc-200 px-3.5 py-1.5 text-xs text-zinc-600"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Architecture image */}
+                <div
+                  className={`overflow-hidden rounded-[24px] border border-zinc-200/70 ${
+                    i % 2 === 1 ? "md:order-1" : ""
+                  }`}
+                >
+                  <Image
+                    src={tech.image}
+                    alt={tech.title}
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 768px) 100vw, 560px"
+                    className="h-auto w-full"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -382,158 +412,6 @@ export default function AiTechnologiesPage() {
       </section>
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
-        {/* NN-based separation engine */}
-        <section className="mt-28 grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-              Low latency AI-based denoising
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-              NN-based separation engine
-            </h2>
-            <p className="mt-4 leading-relaxed text-zinc-500">
-              IPHIPI&apos;s denoising specialises in isolating speech signals
-              between a user and their interlocutors in noisy environments. It
-              enables clear and understandable conversations even in settings
-              where noise typically hampers communication — such as
-              non-stationary and harmonic noises and low signal-to-noise
-              ratios.
-            </p>
-            <p className="mt-4 leading-relaxed text-zinc-500">
-              Utilising IPHIPI&apos;s proprietary machine learning technology,
-              the separation engine enables unhindered communication
-              irrespective of the location.
-            </p>
-          </div>
-
-          {/* Separation visual */}
-          <div className="rounded-[28px] border border-zinc-200/70 bg-[#faf6ee] p-8">
-            <div className="flex flex-wrap justify-center gap-2">
-              {SEPARATION_INPUTS.map((input) => (
-                <span key={input} className="rounded-full border border-zinc-300 bg-white px-3.5 py-1.5 text-sm text-zinc-600">
-                  {input}
-                </span>
-              ))}
-            </div>
-            <div className="my-5 flex justify-center">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 rotate-90 text-zinc-400" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </div>
-            <div className="rounded-[16px] bg-[#0D0D0F] px-6 py-5 text-center">
-              <p className="text-sm font-medium text-white">NN-based separation engine</p>
-              <Waveform
-                bars={[40, 70, 35, 85, 45, 75, 40, 60, 35, 80, 45, 65]}
-                className="mx-auto mt-3 h-6"
-              />
-            </div>
-            <div className="my-5 flex justify-center">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 rotate-90 text-zinc-400" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </div>
-            <div className="flex flex-wrap justify-center gap-2">
-              <span className="rounded-full bg-[#D9A544] px-3.5 py-1.5 text-sm font-medium text-[#0D0D0F]">
-                Speaker voice — isolated
-              </span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 text-sm text-zinc-400 line-through">
-                Background noise
-              </span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 text-sm text-zinc-400 line-through">
-                Surrounding voices
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* Beamforming */}
-        <section className="mt-28 grid items-center gap-12 lg:grid-cols-2">
-          <div className="order-last overflow-hidden rounded-[28px] lg:order-first">
-            {/* Sample image — swap for real beamforming/product visuals */}
-            <Image
-              src="/samples/beamforming.jpg"
-              alt="Directional speech enhancement via wearables"
-              width={1200}
-              height={800}
-              className="h-full w-full object-cover"
-            />
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-              Beamforming &amp; voice enhancement
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Directional speech enhancement
-            </h2>
-            <p className="mt-4 leading-relaxed text-zinc-500">
-              IPHIPI&apos;s technology integrates microphone beamforming and
-              speech enhancement, delivering a unique directional speech
-              enhancement experience.
-            </p>
-            <p className="mt-4 leading-relaxed text-zinc-500">
-              By precisely focusing on the speaker and employing sophisticated
-              NN-based denoising, it guarantees optimal audio clarity — even in
-              challenging acoustic conditions — providing an unparalleled
-              communication experience in any environment.
-            </p>
-          </div>
-        </section>
-
-        {/* Mic technology enhancements */}
-        <section className="mt-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-            Adaptive Processing
-          </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Mic Technology Enhancements
-          </h2>
-          <p className="mt-3 max-w-2xl text-zinc-500">
-            IPHIPI&apos;s advanced audio processing adapts to any environment.
-          </p>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {MIC_TECHNOLOGIES.map((tech) => (
-              <div
-                key={tech.title}
-                className="group flex flex-col rounded-[24px] border border-white/10 bg-[#0D0D0F] p-6 transition-colors duration-300 hover:border-[#D9A544]/50"
-              >
-                <Waveform bars={tech.wave} className="h-10" />
-                <h3 className="mt-6 text-lg font-medium text-white">{tech.title}</h3>
-                <p className="mt-1 text-sm font-semibold text-[#D9A544]">{tech.spec}</p>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{tech.body}</p>
-
-                {/* Suppression / range meter */}
-                <div className="mt-6">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-zinc-500">{tech.meter.label}</span>
-                    <span className="font-semibold text-[#D9A544]">{tech.meter.value}</span>
-                  </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className="h-full rounded-full bg-[#D9A544] transition-[width] duration-700"
-                      style={{ width: `${tech.meter.percent}%` }}
-                    />
-                  </div>
-                </div>
-
-                {/* Best-for chips */}
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {tech.chips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-300"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* Form factors */}
         <section className="mt-28">
