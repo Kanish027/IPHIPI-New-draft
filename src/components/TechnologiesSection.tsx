@@ -1,77 +1,46 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /* ------------------------------------------------------------------ */
-/*  Four core technologies — one video + one catchy line each.         */
-/*  Local low-bitrate placeholders; swap for real footage later.       */
+/*  Four core technologies — one infographic board each. The boards    */
+/*  carry their own titles/copy, so the stage stays overlay-free.      */
+/*  (headline/line kept in data in case we want captions back.)        */
 /* ------------------------------------------------------------------ */
 
 const TECHS = [
   {
     id: "single-mic",
     tag: "Single Mic Solution",
-    headline: "One mic. Zero distractions.",
-    line: "Take the call anywhere — the room fades away, your voice stays.",
-    video: "/videos/tech-hero-single.mp4",
+    headline: "Single-Mic Enhancement",
+    line: "Suppresses everyday indoor noise so your voice stays clear during calls.",
+    image: "/tech/single-mic.png",
   },
   {
     id: "dual-mic",
     tag: "Dual Mic Solution",
-    headline: "Step outside. Sound unstoppable.",
-    line: "Wind, traffic, crowds — gone. They only ever hear you.",
-    video: "/videos/tech-hero-dual.mp4",
+    headline: "Dual-Mic ENC. Go Beyond Indoors",
+    line: "Handles indoor noise, outdoor distractions, and wind for clearer conversations.",
+    image: "/tech/dual-mic.png",
   },
   {
     id: "kws",
     tag: "Keyword Spotting",
-    headline: "Say the word. It's already listening.",
-    line: "Your own wake word — 'Hey Mivi', 'Hey Boat' — running on-device.",
-    video: "/videos/tech-hero-keyword.mp4",
+    headline: "Keyword Detection",
+    line: "Always Listening. Only When Needed.",
+    image: "/tech/kws.png",
   },
   {
     id: "far-field",
     tag: "Far-Field",
-    headline: "Heard clearly, across the room.",
-    line: "Kiosks, drive-throughs, meeting rooms — distance is no barrier.",
-    video: "/videos/tech-hero-far.mp4",
+    headline: "Far-Field Voice",
+    line: "Long-Range Voice Capture",
+    image: "/tech/far-field.png",
   },
 ];
 
 const DWELL_SECONDS = 8;
-
-/* Stage video: plays only while it's the active layer and on screen. */
-function StageVideo({ src, active }: { src: string; active: boolean }) {
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && active) el.play().catch(() => {});
-        else el.pause();
-      },
-      { threshold: 0.1 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [active]);
-
-  return (
-    <video
-      ref={ref}
-      src={src}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-        active ? "opacity-100" : "opacity-0"
-      }`}
-    />
-  );
-}
 
 export default function TechnologiesSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -164,43 +133,24 @@ export default function TechnologiesSection() {
           })}
         </div>
 
-        {/* Stage */}
-        <div className="relative mt-8 h-[68vh] max-h-[720px] min-h-[440px] overflow-hidden rounded-[32px] bg-zinc-950">
+        {/* Stage — full infographic boards, crossfading per tab */}
+        <div className="relative mt-8 aspect-[3/2] max-h-[780px] w-full overflow-hidden rounded-[32px] bg-zinc-950">
           {TECHS.map((tech, i) => (
-            <StageVideo key={tech.id} src={tech.video} active={i === active} />
+            <Image
+              key={tech.id}
+              src={tech.image}
+              alt={`${tech.tag} — ${tech.headline}`}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1152px"
+              priority={i === 0}
+              // Eager-load the hidden boards too — lazy + opacity-0 would
+              // leave a black stage on the first tab switch.
+              loading="eager"
+              className={`object-contain transition-opacity duration-700 ${
+                i === active ? "opacity-100" : "opacity-0"
+              }`}
+            />
           ))}
-
-          {/* Legibility gradient */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
-
-          {/* Copy — re-animates on every tab change */}
-          <div
-            key={active}
-            className="absolute inset-x-0 bottom-0 animate-slide-up p-7 sm:p-10 md:p-12"
-          >
-            <h3 className="max-w-2xl text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl">
-              {TECHS[active].headline}
-            </h3>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg">
-              {TECHS[active].line}
-            </p>
-          </div>
-
-          {/* Waveform signature */}
-          <div className="absolute bottom-10 right-10 hidden items-end gap-[3px] lg:flex">
-            {[35, 60, 30, 75, 45, 85, 40, 65, 30, 80, 50, 70].map((h, i) => (
-              <span
-                key={i}
-                className="w-1 origin-bottom rounded-full bg-[#D9A544]/70"
-                style={{
-                  height: `${h * 0.5}px`,
-                  animation: "iphipiWave 1.8s ease-in-out infinite",
-                  animationDelay: `${i * 0.08}s`,
-                  animationPlayState: visible ? "running" : "paused",
-                }}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
