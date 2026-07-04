@@ -2,12 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* Shared scroll-pinned hero (homepage + subpages). The hero pins for the
-   section height; while pinned, the video grows from an inset band at the
-   bottom of the screen to full-bleed, and a white copy of the headline —
-   clipped to the video's rectangle — replaces the black one wherever the
-   video passes behind it. */
-
 const SIDE_MARGIN = 36; // px inset of the video at rest
 const TOP_START = 62; // vh — where the video's top edge starts
 const RADIUS = 16; // px corner radius at rest

@@ -45,13 +45,13 @@ const PARTNERS = [
   {
     name: "Mivi",
     tag: "Audio",
-    body: "Premium audio experiences with advanced noise suppression, built into their flagship earbuds and headphones lineup.",
+    body: "Delivered advanced dual-microphone ENC and keyword detection technology to enable clear, natural voice interactions.",
     wave: [40, 65, 30, 80, 55, 90, 45, 70, 35, 85, 50, 95, 40, 60, 75, 30, 88, 45, 65, 55, 80, 35, 70, 50],
   },
   {
     name: "HME",
     tag: "Hearing",
-    body: "Hearing enhancement devices powered by edge AI processing — clearer speech in noisy, everyday environments.",
+    body: "Delivered a far-field voice solution for hands-free communication systems, enabling accurate voice capture in noisy environments.",
     wave: [55, 35, 75, 45, 90, 60, 30, 85, 50, 70, 40, 95, 55, 30, 80, 60, 45, 75, 35, 90, 50, 65, 40, 85],
   },
   {
