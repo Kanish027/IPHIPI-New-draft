@@ -57,7 +57,7 @@ const PARTNERS = [
   {
     name: "LAVA",
     tag: "Mobile",
-    body: "Feature phones and keypad phones fitted with single-mic noise suppression, shipped to millions of users.",
+    body: "Delivered single-mic noise suppression technology for Lava feature phones, enhancing voice clarity during everyday calls.",
     wave: [30, 90, 45, 60, 80, 35, 70, 50, 95, 40, 65, 55, 85, 30, 75, 45, 90, 60, 35, 80, 50, 70, 40, 65],
   },
 ];
