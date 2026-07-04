@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Tailwind CSS v4 configuration (CSS-first — replaces tailwind.config.js).
+ * Tokens defined in @theme generate utilities, e.g. --color-primary-500
+ * becomes bg-primary-500 / text-primary-500 / border-primary-500.
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Class-based dark mode: `dark:` utilities apply under a .dark ancestor
+   (e.g. <html class="dark">) instead of only prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* ---------- Brand palette ---------- */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+  --color-primary-950: #1e1b4b;
+
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-200: #a7f3d0;
+  --color-accent-300: #6ee7b7;
+  --color-accent-400: #34d399;
+  --color-accent-500: #10b981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065f46;
+  --color-accent-900: #064e3b;
+  --color-accent-950: #022c22;
+
+  /* ---------- Typography ---------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "Cascadia Code", monospace;
+
+  /* ---------- Radii & shadows ---------- */
+  --radius-4xl: 2rem;
+  --shadow-soft: 0 2px 8px 0 rgb(0 0 0 / 0.06), 0 8px 24px -4px rgb(0 0 0 / 0.1);
+
+  /* ---------- Extra breakpoint ---------- */
+  --breakpoint-3xl: 120rem;
+
+  /* ---------- Animations ---------- */
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-slide-up: slide-up 0.4s ease-out both;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(1rem); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
+/* ---------- Semantic tokens (theme-aware) ---------- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+}
+
+/* System fallback when no explicit .dark/.light class is set */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --muted: #171717;
+    --muted-foreground: #a3a3a3;
+    --border: #262626;
+  }
+}
+
+/* Map semantic tokens to utilities: bg-background, text-muted-foreground,
+   border-border, etc. `inline` resolves the var() at build time. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+}
+
+/* Blinking status dot (used via animate-[blinking_0.75s_ease-in-out_infinite]) */
+@keyframes blinking {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Ambient audio waveform bars (used with inline animation + stagger delays) */
+@keyframes iphipiWave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+/* R&D visualization loops: staggered delays make one item "active" at a time */
+@keyframes iphipiCycleTile {
+  0%, 18% {
+    border-color: rgba(217, 165, 68, 0.7);
+    background-color: rgba(217, 165, 68, 0.12);
+    color: #fafafa;
+  }
+  28%, 100% {
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: #a1a1aa;
+  }
+}
+
+@keyframes iphipiSpeak {
+  0%, 15% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.1);
+  }
+  25%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes iphipiPlayhead {
+  0% { left: 0%; }
+  100% { left: 100%; }
+}
+
+/* ---------- Base styles ---------- */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }

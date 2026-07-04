@@ -1,0 +1,118 @@
+import type { Metadata } from "next";
+import { ContactForm } from "./contact-form";
+
+export const metadata: Metadata = {
+  title: "Contact — IPHIPI",
+  description: "Get in touch with the IPHIPI team.",
+};
+
+const CHANNELS = [
+  {
+    title: "Partnerships",
+    email: "partnerships@iphipi.com",
+    description: "Custom integrations, OEM licensing, and branded wake words.",
+  },
+  {
+    title: "General",
+    email: "hello@iphipi.com",
+    description: "Press, careers, and everything else.",
+  },
+];
+
+const SOCIALS = [
+  { label: "Twitter", href: "https://twitter.com/iphipi" },
+  { label: "LinkedIn", href: "https://linkedin.com/company/iphipi" },
+  { label: "GitHub", href: "https://github.com/iphipi" },
+];
+
+export default function ContactPage() {
+  return (
+    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-zinc-950 lg:px-6">
+      <div className="mx-auto w-full max-w-6xl">
+        {/* Page header */}
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+          Contact
+        </p>
+        <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
+          Let&apos;s build voice-first products together
+        </h1>
+        <p className="mt-5 max-w-2xl text-lg text-zinc-500">
+          Whether you&apos;re an OEM exploring on-device audio intelligence or a
+          brand designing a voice experience — we&apos;d love to hear from you.
+        </p>
+
+        {/* Direct channels */}
+        <div className="mt-16 grid gap-5 sm:grid-cols-2">
+          {CHANNELS.map((channel) => (
+            <div
+              key={channel.title}
+              className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-8"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#A87B24]">
+                {channel.title}
+              </p>
+              <a
+                href={`mailto:${channel.email}`}
+                className="mt-4 inline-block text-lg font-medium underline-offset-4 transition hover:underline"
+              >
+                {channel.email}
+              </a>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-500">
+                {channel.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Form + info */}
+        <div className="mt-16 grid gap-10 lg:grid-cols-5 lg:gap-12">
+          <aside className="lg:col-span-2">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Send us a message
+            </h2>
+            <p className="mt-3 max-w-sm text-zinc-500">
+              Tell us a bit about what you&apos;re working on. We typically
+              reply within one to two business days.
+            </p>
+
+            <div className="mt-10 space-y-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                  Headquarters
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+                  IPHIPI Inc.
+                  <br />
+                  San Francisco, CA
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                  Follow
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {SOCIALS.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition-colors duration-300 hover:border-[#D9A544] hover:bg-[#faf6ee]"
+                    >
+                      {social.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <section className="lg:col-span-3">
+            <div className="rounded-xl border border-zinc-200 p-6 sm:p-8">
+              <ContactForm />
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}
