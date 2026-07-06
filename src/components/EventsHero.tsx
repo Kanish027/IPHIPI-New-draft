@@ -1,16 +1,12 @@
-"use client";
-
-import ScrollHero from "@/components/ScrollHero";
+import PageBanner from "@/components/PageBanner";
 
 export default function EventsHero() {
   return (
-    <ScrollHero
-      taglineTop="Events"
-      taglineSub="Experience agentic audio intelligence first-hand"
+    <PageBanner
+      eyebrow="Events"
       title="Meet us where it matters"
-      titleClassName="max-w-[14ch] text-[clamp(2.5rem,6vw,7rem)] leading-[1.03]"
-      videoSrc="/videos/events-hero.mp4"
-      poster="/our-story-poster.jpg"
+      tagline="Experience agentic audio intelligence first-hand."
+      gradient="bg-[radial-gradient(circle_at_50%_120%,rgba(217,165,68,0.20),transparent_60%),linear-gradient(180deg,#faf6ee_0%,#ffffff_60%)]"
     />
   );
 }

@@ -1,16 +1,12 @@
-"use client";
-
-import ScrollHero from "@/components/ScrollHero";
+import PageBanner from "@/components/PageBanner";
 
 export default function AiTechHero() {
   return (
-    <ScrollHero
-      taglineTop="AI Technologies"
-      taglineSub="Engineered for every wearable category"
+    <PageBanner
+      eyebrow="AI Technologies"
       title="Audio Intelligence Across Every Form Factor"
-      titleClassName="max-w-[18ch] text-[clamp(2.25rem,5.5vw,6.25rem)] leading-[1.05]"
-      videoSrc="/videos/ai-tech-hero.mp4"
-      poster="/our-story-poster.jpg"
+      tagline="Engineered for every wearable category."
+      gradient="bg-[radial-gradient(circle_at_25%_15%,rgba(217,165,68,0.18),transparent_55%),linear-gradient(160deg,#faf6ee_0%,#ffffff_60%)]"
     />
   );
 }

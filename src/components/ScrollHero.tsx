@@ -14,7 +14,12 @@ type ScrollHeroProps = {
   title: string;
   /** Controls headline size/wrapping, e.g. "max-w-[14ch] text-[clamp(...)]" */
   titleClassName?: string;
-  videoSrc: string;
+  /** Provide a video for a playing banner (homepage). Omit for a static one. */
+  videoSrc?: string;
+  /** Static banner image — used when videoSrc is omitted (subpages). */
+  image?: string;
+  /** Premium gradient class for the banner when there's no video or image. */
+  gradient?: string;
   poster?: string;
   /** Extra content under the headline (e.g. anchor pills), styled per copy. */
   extra?: (variant: HeroVariant) => React.ReactNode;
@@ -47,6 +52,8 @@ function HeroText({
 export default function ScrollHero(props: ScrollHeroProps) {
   const {
     videoSrc,
+    image,
+    gradient = "bg-[radial-gradient(circle_at_25%_15%,rgba(217,165,68,0.22),transparent_55%),linear-gradient(160deg,#17130c_0%,#0b0b0d_60%)]",
     poster,
     titleClassName = "max-w-[14ch] text-[clamp(2.5rem,6.5vw,7.5rem)] leading-[1.02]",
   } = props;
@@ -109,7 +116,8 @@ export default function ScrollHero(props: ScrollHeroProps) {
       <div className="sticky top-0 h-screen overflow-hidden">
         <HeroText {...props} titleClassName={titleClassName} variant="dark" />
 
-        {/* Video, expanding from an inset band to full-bleed */}
+        {/* Banner, expanding from an inset band to full-bleed. Video on the
+            homepage; a static image on subpages (no videoSrc). */}
         <div
           className="absolute bottom-0 overflow-hidden bg-zinc-900"
           style={{
@@ -119,16 +127,23 @@ export default function ScrollHero(props: ScrollHeroProps) {
             borderRadius: radius,
           }}
         >
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            poster={poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="h-full w-full object-cover"
-          />
+          {videoSrc ? (
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              poster={poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          ) : image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={image} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <div className={`h-full w-full ${gradient}`} />
+          )}
         </div>
 
         {/* White text, visible only where the video is */}
