@@ -208,7 +208,7 @@ export default function AiTechnologiesPage() {
       <MicTechShowcase />
 
       {/* NDP 115 — audio processing flow (full-bleed, like the Partners band) */}
-      <section className="mt-28 bg-ink-900 px-4 py-28 text-white lg:px-6">
+      <section className="mt-28 bg-indigo-950 px-4 py-28 text-white lg:px-6">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
             The NDP 115 — AI Audio Processor

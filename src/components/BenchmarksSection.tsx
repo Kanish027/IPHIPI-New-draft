@@ -121,7 +121,7 @@ export default function BenchmarksSection() {
                     {stat.label}
                   </span>
                 </p>
-                <p className="mt-2 text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums">
+                <p className="mt-2 font-geometric text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums">
                   {stat.value}
                   <span className="ml-2 align-top text-[0.35em] font-semibold text-cyan-600">
                     {stat.suffix}

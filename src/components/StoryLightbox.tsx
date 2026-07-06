@@ -159,7 +159,7 @@ function StoryPlayer() {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-sm tabular-nums">
+          <span className="font-geometric text-sm tabular-nums">
             {formatTime(time)} / {formatTime(duration)}
           </span>
           <div className="flex items-center gap-5">

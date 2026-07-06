@@ -174,16 +174,16 @@ function DoaRadar() {
       <div className="absolute inset-0 rounded-full border border-white/10" />
       <div className="absolute inset-3 rounded-full border border-white/10" />
       <div className="absolute inset-6 rounded-full border border-white/10" />
-      <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[9px] text-zinc-500">
+      <span className="absolute -top-4 left-1/2 -translate-x-1/2 font-geometric text-[9px] text-zinc-500">
         Front
       </span>
-      <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[9px] text-zinc-500">
+      <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 font-geometric text-[9px] text-zinc-500">
         180° Back
       </span>
-      <span className="absolute left-[-30px] top-1/2 -translate-y-1/2 text-[9px] text-zinc-500">
+      <span className="absolute left-[-30px] top-1/2 -translate-y-1/2 font-geometric text-[9px] text-zinc-500">
         90° Left
       </span>
-      <span className="absolute right-[-34px] top-1/2 -translate-y-1/2 text-[9px] text-zinc-500">
+      <span className="absolute right-[-34px] top-1/2 -translate-y-1/2 font-geometric text-[9px] text-zinc-500">
         90° Right
       </span>
       <span
@@ -365,7 +365,7 @@ export default function ResearchPage() {
 
           {/* Technology visualization cards — dark panel, matching the dark
               sections on the AI Technologies page */}
-          <div className="mt-10 rounded-xl bg-ink-900 p-6 text-white sm:p-8">
+          <div className="mt-10 rounded-xl bg-indigo-950 p-6 text-white sm:p-8">
             <div className="grid gap-4 md:grid-cols-3">
               <TechCard
                 icon={<>{MicIcon}<span className="text-xs font-medium">Speech Enhancement</span></>}

@@ -113,7 +113,7 @@ export default function MicTechShowcase() {
                 <div className="mt-8 max-w-sm">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-zinc-500">{tech.meter.label}</span>
-                    <span className="font-semibold text-cyan-700">{tech.meter.value}</span>
+                    <span className="font-geometric font-semibold text-cyan-700">{tech.meter.value}</span>
                   </div>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100">
                     <div
