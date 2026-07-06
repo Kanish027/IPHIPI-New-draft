@@ -8,7 +8,7 @@ export default function PageBanner({
   title,
   tagline,
   titleClassName = "text-[clamp(2.5rem,5vw,4.5rem)]",
-  gradient = "bg-[radial-gradient(circle_at_25%_15%,rgba(217,165,68,0.16),transparent_55%),linear-gradient(160deg,#faf6ee_0%,#ffffff_60%)]",
+  gradient = "bg-[radial-gradient(circle_at_25%_15%,rgba(6,182,212,0.14),transparent_55%),linear-gradient(160deg,#faf6ee_0%,#ffffff_60%)]",
   children,
 }: {
   eyebrow: string;
@@ -24,8 +24,8 @@ export default function PageBanner({
     >
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         {/* Eyebrow pill */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#D9A544]/30 bg-[#D9A544]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#A87B24]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D9A544]" />
+        <span className="inline-flex items-center gap-2 rounded-full border border-cyan-600/30 bg-cyan-600/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
           {eyebrow}
         </span>
 

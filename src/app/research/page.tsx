@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 /*  Shared bits                                                        */
 /* ------------------------------------------------------------------ */
 
-const GOLD = "#D9A544";
+/* Electric Cyan — "The Signal": used for audio/spatial signal indicators
+   (DOA radar, navigation/vision/audio icons). Gold stays reserved for the
+   Agentic Edge "harmony" callouts elsewhere on this page. */
+const SIGNAL = "#22d3ee";
 
 function Eyebrow({ children }: { children: string }) {
   return (
@@ -164,7 +167,7 @@ function DoaRadar() {
           className="absolute inset-0 animate-[spin_4s_linear_infinite]"
           style={{
             background:
-              "conic-gradient(from 0deg, rgba(217,165,68,0.35), transparent 75deg)",
+              "conic-gradient(from 0deg, rgba(34,211,238,0.35), transparent 75deg)",
           }}
         />
       </div>
@@ -186,7 +189,7 @@ function DoaRadar() {
       <span
         className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          backgroundColor: GOLD,
+          backgroundColor: SIGNAL,
           animation: "blinking 1.5s ease-in-out infinite",
         }}
       />
@@ -362,7 +365,7 @@ export default function ResearchPage() {
 
           {/* Technology visualization cards — dark panel, matching the dark
               sections on the AI Technologies page */}
-          <div className="mt-10 rounded-xl bg-[#0D0D0F] p-6 text-white sm:p-8">
+          <div className="mt-10 rounded-xl bg-ink-900 p-6 text-white sm:p-8">
             <div className="grid gap-4 md:grid-cols-3">
               <TechCard
                 icon={<>{MicIcon}<span className="text-xs font-medium">Speech Enhancement</span></>}
@@ -477,9 +480,9 @@ export default function ResearchPage() {
             ].map((f) => (
               <div
                 key={f.name}
-                className="group flex items-start gap-4 rounded-xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D9A544] hover:bg-[#faf6ee]"
+                className="group flex items-start gap-4 rounded-xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-cyan-50"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-[#A87B24]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-700">
                   {f.icon}
                 </span>
                 <span>
@@ -550,14 +553,14 @@ export default function ResearchPage() {
 
               <div className="mt-8 grid max-w-3xl gap-8 sm:grid-cols-3">
                 <div>
-                  <span style={{ color: GOLD }}>{PinIcon}</span>
+                  <span style={{ color: SIGNAL }}>{PinIcon}</span>
                   <p className="mt-2 font-semibold text-white">Real-Time Navigation</p>
                   <p className="mt-1 text-sm text-zinc-400">
                     Understands surroundings and predicts relevant needs.
                   </p>
                 </div>
                 <div>
-                  <span style={{ color: GOLD }}>{EyeIcon}</span>
+                  <span style={{ color: SIGNAL }}>{EyeIcon}</span>
                   <p className="mt-2 font-semibold text-white">
                     Object &amp; Scene Recognition
                   </p>
@@ -566,7 +569,7 @@ export default function ResearchPage() {
                   </p>
                 </div>
                 <div>
-                  <span style={{ color: GOLD }}>{SpeakerIcon}</span>
+                  <span style={{ color: SIGNAL }}>{SpeakerIcon}</span>
                   <p className="mt-2 font-semibold text-white">Spatial Audio</p>
                   <p className="mt-1 text-sm text-zinc-400">
                     Directional audio cues aligned with the physical environment.

@@ -48,7 +48,7 @@ export default function ContactPage() {
               key={channel.title}
               className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-8"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#A87B24]">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">
                 {channel.title}
               </p>
               <a
@@ -96,7 +96,7 @@ export default function ContactPage() {
                     <a
                       key={social.label}
                       href={social.href}
-                      className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition-colors duration-300 hover:border-[#D9A544] hover:bg-[#faf6ee]"
+                      className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition-colors duration-300 hover:border-cyan-500 hover:bg-cyan-50"
                     >
                       {social.label}
                     </a>

@@ -89,7 +89,7 @@ export default function BenchmarksSection() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden text-zinc-950">
         {/* Header */}
         <div className="mx-auto w-full max-w-6xl px-4 pt-24 lg:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A87B24]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">
             Benchmark Analysis
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -114,7 +114,7 @@ export default function BenchmarksSection() {
                 }}
               >
                 <p className="flex items-baseline gap-4">
-                  <span className="font-mono text-sm text-[#A87B24]">
+                  <span className="font-geometric text-sm text-cyan-700">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
@@ -123,7 +123,7 @@ export default function BenchmarksSection() {
                 </p>
                 <p className="mt-2 text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums">
                   {stat.value}
-                  <span className="ml-2 align-top text-[0.35em] font-semibold text-[#D9A544]">
+                  <span className="ml-2 align-top text-[0.35em] font-semibold text-cyan-600">
                     {stat.suffix}
                   </span>
                 </p>
@@ -144,9 +144,9 @@ export default function BenchmarksSection() {
                 className="group flex cursor-pointer items-center gap-3"
               >
                 <span
-                  className={`font-mono text-[10px] transition-colors duration-300 ${
+                  className={`font-geometric text-[10px] transition-colors duration-300 ${
                     i === active
-                      ? "text-[#A87B24]"
+                      ? "text-cyan-700"
                       : "text-zinc-400 group-hover:text-zinc-600"
                   }`}
                 >
@@ -155,7 +155,7 @@ export default function BenchmarksSection() {
                 <span
                   className={`h-px transition-all duration-300 ${
                     i === active
-                      ? "w-10 bg-[#D9A544]"
+                      ? "w-10 bg-cyan-600"
                       : "w-5 bg-zinc-300 group-hover:bg-zinc-500"
                   }`}
                 />
@@ -169,7 +169,7 @@ export default function BenchmarksSection() {
           {WAVE_BARS.map((h, i) => (
             <span
               key={i}
-              className="w-1 origin-bottom rounded-full bg-[#D9A544]/40"
+              className="w-1 origin-bottom rounded-full bg-cyan-500/40"
               style={{
                 height: `${h * 0.5}px`,
                 animation: "iphipiWave 1.8s ease-in-out infinite",

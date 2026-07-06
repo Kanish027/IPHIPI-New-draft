@@ -64,7 +64,7 @@ const PARTNERS = [
 
 export default function PartnersSection() {
   return (
-    <section className="bg-[#0D0D0F] px-4 py-28 lg:px-6">
+    <section className="bg-ink-900 px-4 py-28 lg:px-6">
       <style>{`
         @keyframes iphipiWave {
           0%, 100% { transform: scaleY(0.45); }
@@ -73,7 +73,7 @@ export default function PartnersSection() {
       `}</style>
 
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D9A544]">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
           Our Partners
         </p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -95,7 +95,7 @@ export default function PartnersSection() {
                 {partner.wave.map((h, i) => (
                   <span
                     key={i}
-                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-[#D9A544]"
+                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-cyan-400"
                     style={{
                       height: `${h}%`,
                       animation: "iphipiWave 1.8s ease-in-out infinite",
@@ -105,7 +105,7 @@ export default function PartnersSection() {
                 ))}
               </div>
 
-              <span className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-zinc-400 transition-colors duration-300 group-hover:border-[#D9A544]/40 group-hover:text-[#D9A544]">
+              <span className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-zinc-400 transition-colors duration-300 group-hover:border-cyan-400/40 group-hover:text-cyan-400">
                 {partner.tag}
               </span>
 

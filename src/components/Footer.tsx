@@ -24,7 +24,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D0D0F] px-4 pb-6 pt-20 text-white lg:px-6">
+    <footer className="bg-ink-900 px-4 pb-6 pt-20 text-white lg:px-6">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
@@ -51,7 +51,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition-colors duration-300 hover:border-[#D9A544] hover:text-[#D9A544]"
+                  className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition-colors duration-300 hover:border-cyan-400 hover:text-cyan-400"
                 >
                   {social.label}
                 </a>

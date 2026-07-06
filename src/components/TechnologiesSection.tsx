@@ -103,7 +103,7 @@ export default function TechnologiesSection() {
                     <span
                       key={`${active}-${cycle}`}
                       onAnimationEnd={() => setActive((active + 1) % TECHS.length)}
-                      className="block h-full bg-[#D9A544]"
+                      className="block h-full bg-cyan-500"
                       style={{
                         animation: `iphipiTabFill ${DWELL_SECONDS}s linear forwards`,
                         animationPlayState: visible ? "running" : "paused",
@@ -117,7 +117,7 @@ export default function TechnologiesSection() {
                     isActive ? "opacity-100" : "opacity-55 group-hover:opacity-90"
                   }`}
                 >
-                  <span className="font-mono text-xs text-[#A87B24]">
+                  <span className="font-geometric text-xs text-cyan-700">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span

@@ -53,7 +53,7 @@ export default function ScrollHero(props: ScrollHeroProps) {
   const {
     videoSrc,
     image,
-    gradient = "bg-[radial-gradient(circle_at_25%_15%,rgba(217,165,68,0.22),transparent_55%),linear-gradient(160deg,#17130c_0%,#0b0b0d_60%)]",
+    gradient = "bg-[radial-gradient(circle_at_25%_15%,rgba(6,182,212,0.22),transparent_55%),linear-gradient(160deg,#0d0d14_0%,#0a0a0f_60%)]",
     poster,
     titleClassName = "max-w-[14ch] text-[clamp(2.5rem,6.5vw,7.5rem)] leading-[1.02]",
   } = props;

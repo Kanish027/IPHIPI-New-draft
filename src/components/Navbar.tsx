@@ -222,7 +222,7 @@ export default function Navbar() {
                     href="/beta-program"
                   >
                     <span className="pr-1">Beta Application</span>
-                    <span className="inline-block h-2 w-2 animate-[blinking_0.75s_ease-in-out_infinite] rounded-full bg-yellow-300" />
+                    <span className="inline-block h-2 w-2 animate-[blinking_0.75s_ease-in-out_infinite] rounded-full bg-gold-500" />
                   </a>
                 </div>
               </div>

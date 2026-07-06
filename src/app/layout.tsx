@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// PHI (humanist) — headings, nav, body. Matches the brand guide's example.
+const phi = IBM_Plex_Sans({
+  variable: "--font-phi",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+// IOTA (geometric) — numbers, metrics, technical labels.
+const iota = Space_Grotesk({
+  variable: "--font-iota",
   subsets: ["latin"],
 });
 
@@ -27,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${phi.variable} ${iota.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />

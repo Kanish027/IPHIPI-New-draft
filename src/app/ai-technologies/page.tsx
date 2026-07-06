@@ -14,7 +14,7 @@ const STAGES = [
     title: "Audio Capture",
     desc: "High-performance mic input",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <rect x="9" y="2" width="6" height="12" rx="3" />
         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
       </svg>
@@ -24,7 +24,7 @@ const STAGES = [
     title: "Pre-Processing",
     desc: "Noise profiling, echo management, VAD",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 8h10M18 8h2M4 16h2M10 16h10" />
         <circle cx="16" cy="8" r="2" />
         <circle cx="8" cy="16" r="2" />
@@ -35,7 +35,7 @@ const STAGES = [
     title: "AI Noise Suppression",
     desc: "Proprietary AI models remove background noise",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <rect x="7" y="7" width="10" height="10" rx="2" />
         <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4" />
       </svg>
@@ -45,7 +45,7 @@ const STAGES = [
     title: "Speech Enhancement",
     desc: "Enhances clarity, preserves natural voice",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M3 12h2l2-5 3 10 3-14 3 12 2-6 1 3h2" />
       </svg>
     ),
@@ -54,10 +54,10 @@ const STAGES = [
     title: "Dynamic Optimization",
     desc: "Automatic gain control, equalization, adaptation",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 17a8 8 0 1 1 16 0" />
         <path d="M12 17l4-5" />
-        <circle cx="12" cy="17" r="1.2" fill="#D9A544" stroke="none" />
+        <circle cx="12" cy="17" r="1.2" fill="#22d3ee" stroke="none" />
       </svg>
     ),
   },
@@ -65,7 +65,7 @@ const STAGES = [
     title: "Output Generation",
     desc: "Crystal-clear audio output",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 9v6h4l5 4V5L8 9H4Z" />
         <path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11" />
       </svg>
@@ -169,7 +169,7 @@ const FORM_FACTORS = [
 function Waveform({
   bars,
   className = "",
-  barClassName = "bg-[#D9A544]",
+  barClassName = "bg-cyan-400",
 }: {
   bars: number[];
   className?: string;
@@ -208,9 +208,9 @@ export default function AiTechnologiesPage() {
       <MicTechShowcase />
 
       {/* NDP 115 — audio processing flow (full-bleed, like the Partners band) */}
-      <section className="mt-28 bg-[#0D0D0F] px-4 py-28 text-white lg:px-6">
+      <section className="mt-28 bg-ink-900 px-4 py-28 text-white lg:px-6">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D9A544]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
             The NDP 115 — AI Audio Processor
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -247,7 +247,7 @@ export default function AiTechnologiesPage() {
                 <div className="flex-1 rounded-[14px] border border-white/15 bg-white/5 p-4">
                   <div className="flex items-center justify-between gap-2">
                     {stage.icon}
-                    <span className="font-mono text-[10px] text-[#D9A544]">
+                    <span className="font-geometric text-[10px] text-cyan-400">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -266,9 +266,9 @@ export default function AiTechnologiesPage() {
             ))}
 
             {/* Enhanced output endpoint */}
-            <div className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border border-[#D9A544]/40 bg-[#D9A544]/10 px-4 py-5 xl:w-28 xl:shrink-0">
+            <div className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border border-cyan-500/40 bg-cyan-400/10 px-4 py-5 xl:w-28 xl:shrink-0">
               <Waveform bars={[45, 60, 50, 65, 52, 62, 48]} className="h-8" />
-              <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-[#D9A544]">
+              <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-cyan-400">
                 Enhanced audio output
               </p>
             </div>
@@ -278,17 +278,17 @@ export default function AiTechnologiesPage() {
               six processing stages, not the input/output endpoints */}
           <div className="hidden xl:block">
             <div className="relative mt-3 h-7" style={{ marginInline: "10.5rem" }}>
-              <div className="absolute inset-x-0 top-0 border-t border-dashed border-[#D9A544]/40" />
-              <div className="absolute left-0 top-0 h-3 border-l border-dashed border-[#D9A544]/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute right-0 top-0 h-3 border-r border-dashed border-[#D9A544]/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-[#D9A544]/40" />
+              <div className="absolute inset-x-0 top-0 border-t border-dashed border-cyan-500/40" />
+              <div className="absolute left-0 top-0 h-3 border-l border-dashed border-cyan-500/40" style={{ transform: "translateY(-100%)" }} />
+              <div className="absolute right-0 top-0 h-3 border-r border-dashed border-cyan-500/40" style={{ transform: "translateY(-100%)" }} />
+              <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-cyan-500/40" />
             </div>
           </div>
 
           {/* On-chip acceleration */}
-          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed border-[#D9A544]/50 bg-[#D9A544]/10 px-6 py-4 xl:mt-0">
+          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed border-cyan-500/50 bg-cyan-400/10 px-6 py-4 xl:mt-0">
             <p className="flex items-center gap-2.5 text-sm font-semibold">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#D9A544" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
                 <rect x="7" y="7" width="10" height="10" rx="2" />
                 <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4" />
               </svg>
@@ -315,9 +315,9 @@ export default function AiTechnologiesPage() {
             {FORM_FACTORS.map((factor) => (
               <div
                 key={factor.name}
-                className="group flex flex-col items-center gap-4 rounded-[20px] border border-zinc-200 px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D9A544] hover:bg-[#faf6ee]"
+                className="group flex flex-col items-center gap-4 rounded-[20px] border border-zinc-200 px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-[#faf6ee]"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-[#A87B24]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-700">
                   {factor.icon}
                 </span>
                 <span>

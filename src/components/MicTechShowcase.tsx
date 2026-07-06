@@ -96,28 +96,28 @@ export default function MicTechShowcase() {
                 }}
                 className={`flex min-h-[70vh] flex-col justify-center border-l-2 pl-6 transition-all duration-500 sm:pl-8 ${
                   i === active
-                    ? "border-[#D9A544] opacity-100"
+                    ? "border-cyan-500 opacity-100"
                     : "border-zinc-200 opacity-40"
                 }`}
               >
-                <p className="font-mono text-sm text-[#A87B24]">
+                <p className="font-geometric text-sm text-cyan-700">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
                   {tech.title}
                 </h3>
-                <p className="mt-1.5 text-sm font-semibold text-[#A87B24]">{tech.spec}</p>
+                <p className="mt-1.5 text-sm font-semibold text-cyan-700">{tech.spec}</p>
                 <p className="mt-4 max-w-md leading-relaxed text-zinc-500">{tech.body}</p>
 
                 {/* Meter */}
                 <div className="mt-8 max-w-sm">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-zinc-500">{tech.meter.label}</span>
-                    <span className="font-semibold text-[#A87B24]">{tech.meter.value}</span>
+                    <span className="font-semibold text-cyan-700">{tech.meter.value}</span>
                   </div>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100">
                     <div
-                      className="h-full rounded-full bg-[#D9A544] transition-[width] duration-700"
+                      className="h-full rounded-full bg-cyan-500 transition-[width] duration-700"
                       style={{ width: i === active ? `${tech.meter.percent}%` : "0%" }}
                     />
                   </div>
@@ -162,7 +162,7 @@ export default function MicTechShowcase() {
                     <span
                       key={tech.title}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === active ? "w-6 bg-[#D9A544]" : "w-1.5 bg-white/40"
+                        i === active ? "w-6 bg-cyan-400" : "w-1.5 bg-white/40"
                       }`}
                     />
                   ))}
