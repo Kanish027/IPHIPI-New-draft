@@ -78,7 +78,7 @@ export default function MicTechShowcase() {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
           Adaptive Processing
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-headline font-semibold tracking-tight">
           Mic Technology Enhancements
         </h2>
         <p className="mt-3 max-w-2xl text-zinc-500">
@@ -103,7 +103,7 @@ export default function MicTechShowcase() {
                 <p className="font-geometric text-sm text-cyan-700">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                <h3 className="mt-3 text-subhead font-semibold tracking-tight">
                   {tech.title}
                 </h3>
                 <p className="mt-1.5 text-sm font-semibold text-cyan-700">{tech.spec}</p>

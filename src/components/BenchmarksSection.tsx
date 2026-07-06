@@ -92,7 +92,7 @@ export default function BenchmarksSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">
             Benchmark Analysis
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 text-subhead font-semibold tracking-tight">
             Engineered to Industry-Leading Standards
           </h2>
         </div>

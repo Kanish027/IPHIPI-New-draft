@@ -359,7 +359,7 @@ export default function PillarsSection() {
               Agentic AI Experience
             </p>
 
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-6 text-headline font-semibold tracking-tight text-white">
               Intelligence Everywhere You Go
             </h2>
 

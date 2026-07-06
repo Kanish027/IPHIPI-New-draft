@@ -41,7 +41,7 @@ export default function EventsPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
             Upcoming
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 text-subhead font-semibold tracking-tight">
             Where you can find us next
           </h2>
 
@@ -78,7 +78,7 @@ export default function EventsPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
             Past events
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 text-subhead font-semibold tracking-tight">
             Where we&apos;ve been
           </h2>
 
@@ -111,7 +111,7 @@ export default function EventsPage() {
 
         {/* Private demo CTA */}
         <section className="mt-28 rounded-xl bg-zinc-950 p-8 text-white sm:p-12">
-          <h2 className="max-w-xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="max-w-xl text-subhead font-semibold tracking-tight">
             Can&apos;t make it to a show?
           </h2>
           <p className="mt-3 max-w-xl text-zinc-400">

@@ -213,7 +213,7 @@ export default function AiTechnologiesPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
             The NDP 115 — AI Audio Processor
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="mt-3 text-headline font-semibold tracking-tight">
             Audio Processing Flow
           </h2>
           <p className="mt-4 max-w-2xl text-zinc-400">
@@ -305,7 +305,7 @@ export default function AiTechnologiesPage() {
 
         {/* Form factors */}
         <section className="mt-28">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="text-subhead font-semibold tracking-tight">
             Supported Wearable Form Factors
           </h2>
           <p className="mt-3 max-w-2xl text-zinc-500">

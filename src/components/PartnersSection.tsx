@@ -76,7 +76,7 @@ export default function PartnersSection() {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
           Our Partners
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-3 text-headline font-semibold tracking-tight text-white">
           Trusted by Industry Leaders
         </h2>
         <p className="mt-4 max-w-2xl text-zinc-400">

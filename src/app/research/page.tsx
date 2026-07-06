@@ -327,7 +327,7 @@ export default function ResearchPage() {
         {/* ============================= */}
         <section id="productive-intelligence" className="mt-28 scroll-mt-24">
           <Eyebrow>Productive Intelligence</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 max-w-2xl text-subhead font-semibold tracking-tight">
             Your Always-On Executive Assistant
           </h2>
 
@@ -425,7 +425,7 @@ export default function ResearchPage() {
         {/* ============================= */}
         <section id="living-intelligence" className="mt-28 scroll-mt-24">
           <Eyebrow>Living Intelligence</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 max-w-2xl text-subhead font-semibold tracking-tight">
             Your Home, Intelligently Managed
           </h2>
           <p className="mt-4 max-w-2xl leading-relaxed text-zinc-500">
@@ -499,7 +499,7 @@ export default function ResearchPage() {
         {/* ============================= */}
         <section id="personal-intelligence" className="mt-28 scroll-mt-24">
           <Eyebrow>Personal Intelligence</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 max-w-2xl text-subhead font-semibold tracking-tight">
             Health, Wellness &amp; Accessibility — Reimagined
           </h2>
 
@@ -541,7 +541,7 @@ export default function ResearchPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
                 Spatial Intelligence
               </p>
-              <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              <h2 className="mt-3 max-w-2xl text-subhead font-semibold tracking-tight text-white">
                 Digital Intelligence Meets the Physical World
               </h2>
               <p className="mt-4 max-w-2xl leading-relaxed text-zinc-300">

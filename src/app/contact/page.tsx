@@ -67,7 +67,7 @@ export default function ContactPage() {
         {/* Form + info */}
         <div className="mt-16 grid gap-10 lg:grid-cols-5 lg:gap-12">
           <aside className="lg:col-span-2">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            <h2 className="text-subhead font-semibold tracking-tight">
               Send us a message
             </h2>
             <p className="mt-3 max-w-sm text-zinc-500">

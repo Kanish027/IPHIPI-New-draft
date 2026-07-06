@@ -80,7 +80,7 @@ export default function TechnologiesSection() {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
           IPHIPI Technologies
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-headline font-semibold tracking-tight">
           Adaptive Audio Intelligence
         </h2>
         <p className="mt-4 max-w-2xl text-zinc-500">
