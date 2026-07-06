@@ -141,7 +141,7 @@ export default function MicTechShowcase() {
           {/* Right — pinned crossfading image */}
           <div className="hidden lg:block">
             <div className="sticky top-24 flex h-[calc(100vh-8rem)] items-center">
-              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-zinc-950">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-[#121212]">
                 {TECHS.map((tech, i) => (
                   <Image
                     key={tech.title}
@@ -174,7 +174,7 @@ export default function MicTechShowcase() {
           {/* Mobile — image sits inline under each step's text is overkill;
               show the active image once, below the steps */}
           <div className="lg:hidden">
-            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-zinc-950">
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[24px] border border-zinc-200/70 bg-[#121212]">
               {TECHS.map((tech, i) => (
                 <Image
                   key={tech.title}

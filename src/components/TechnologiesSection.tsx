@@ -122,7 +122,7 @@ export default function TechnologiesSection() {
                   </span>
                   <span
                     className={`mt-1 block text-sm font-medium transition-colors duration-300 ${
-                      isActive ? "text-zinc-950" : "text-zinc-500"
+                      isActive ? "text-[#121212]" : "text-zinc-500"
                     }`}
                   >
                     {tech.tag}

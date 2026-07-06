@@ -64,7 +64,7 @@ const PARTNERS = [
 
 export default function PartnersSection() {
   return (
-    <section className="bg-indigo-950 px-4 py-28 lg:px-6">
+    <section className="px-4 py-28 lg:px-6" style={{backgroundColor: "#4B0082"}}>
       <style>{`
         @keyframes iphipiWave {
           0%, 100% { transform: scaleY(0.45); }

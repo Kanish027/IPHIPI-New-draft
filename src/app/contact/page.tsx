@@ -27,7 +27,7 @@ const SOCIALS = [
 
 export default function ContactPage() {
   return (
-    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-zinc-950 lg:px-6">
+    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-[#121212] lg:px-6">
       <div className="mx-auto w-full max-w-6xl">
         {/* Page header */}
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
@@ -48,7 +48,7 @@ export default function ContactPage() {
               key={channel.title}
               className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-8"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#D4AF37]">
                 {channel.title}
               </p>
               <a

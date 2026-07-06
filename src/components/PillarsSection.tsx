@@ -344,11 +344,11 @@ export default function PillarsSection() {
   }, [goPrev, goNext]);
 
   return (
-    <section className="relative overflow-hidden bg-zinc-950 px-4 py-28 lg:px-6">
+    <section className="relative overflow-hidden px-4 py-28 lg:px-6" style={{backgroundColor: "#121212"}}>
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
+        {/* <div className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full bg-white/5 blur-3xl" /> */}
+        {/* <div className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full bg-white/5 blur-3xl" /> */}
+        {/* <div className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full bg-white/5 blur-3xl" /> */}
       </div>
 
       <div className="relative mx-auto max-w-6xl">

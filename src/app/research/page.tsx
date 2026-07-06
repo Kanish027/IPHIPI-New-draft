@@ -28,7 +28,7 @@ function Eyebrow({ children }: { children: string }) {
 function AgenticEdge({ children }: { children: React.ReactNode }) {
   return (
     <div className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#A87B24]">
+      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#D4AF37]">
         Agentic Edge
       </p>
       <p className="mt-2 text-sm leading-relaxed text-zinc-700">{children}</p>
@@ -318,7 +318,7 @@ const SpeakerIcon = (
 
 export default function ResearchPage() {
   return (
-    <main className="flex-1 bg-white pb-28 text-zinc-950">
+    <main className="flex-1 bg-white pb-28 text-[#121212]">
       <ResearchHero />
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
@@ -365,7 +365,7 @@ export default function ResearchPage() {
 
           {/* Technology visualization cards — dark panel, matching the dark
               sections on the AI Technologies page */}
-          <div className="mt-10 rounded-xl bg-indigo-950 p-6 text-white sm:p-8">
+          <div className="mt-10 rounded-xl p-6 text-white sm:p-8" style={{backgroundColor: "#121212"}}>
             <div className="grid gap-4 md:grid-cols-3">
               <TechCard
                 icon={<>{MicIcon}<span className="text-xs font-medium">Speech Enhancement</span></>}

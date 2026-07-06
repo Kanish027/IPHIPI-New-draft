@@ -86,7 +86,7 @@ export default function BenchmarksSection() {
 
   return (
     <section ref={sectionRef} className="relative h-[420vh] bg-white">
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden text-zinc-950">
+      <div className="sticky top-0 flex h-screen flex-col overflow-hidden text-[#121212]">
         {/* Header */}
         <div className="mx-auto w-full max-w-6xl px-4 pt-24 lg:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">
