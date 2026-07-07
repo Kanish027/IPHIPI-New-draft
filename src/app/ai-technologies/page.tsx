@@ -169,7 +169,7 @@ const FORM_FACTORS = [
 function Waveform({
   bars,
   className = "",
-  barClassName = "bg-cyan-400",
+  barClassName = "bg-[#0FF0FC]",
 }: {
   bars: number[];
   className?: string;
@@ -210,7 +210,7 @@ export default function AiTechnologiesPage() {
       {/* NDP 115 — audio processing flow (full-bleed, like the Partners band) */}
       <section className="mt-28 px-4 py-28 text-white lg:px-6" style={{backgroundColor: "#121212"}}>
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0FF0FC]">
             The NDP 115 — AI Audio Processor
           </p>
           <h2 className="mt-3 text-headline font-semibold tracking-tight">
@@ -247,7 +247,7 @@ export default function AiTechnologiesPage() {
                 <div className="flex-1 rounded-[14px] border border-white/15 bg-white/5 p-4">
                   <div className="flex items-center justify-between gap-2">
                     {stage.icon}
-                    <span className="font-geometric text-[10px] text-cyan-400">
+                    <span className="font-geometric text-[10px] text-[#0FF0FC]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -266,9 +266,9 @@ export default function AiTechnologiesPage() {
             ))}
 
             {/* Enhanced output endpoint */}
-            <div className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border border-cyan-500/40 bg-cyan-400/10 px-4 py-5 xl:w-28 xl:shrink-0">
+            <div className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border border-[#0FF0FC]/40 bg-[#0FF0FC]/10 px-4 py-5 xl:w-28 xl:shrink-0">
               <Waveform bars={[45, 60, 50, 65, 52, 62, 48]} className="h-8" />
-              <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-cyan-400">
+              <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-[#0FF0FC]">
                 Enhanced audio output
               </p>
             </div>
@@ -278,15 +278,15 @@ export default function AiTechnologiesPage() {
               six processing stages, not the input/output endpoints */}
           <div className="hidden xl:block">
             <div className="relative mt-3 h-7" style={{ marginInline: "10.5rem" }}>
-              <div className="absolute inset-x-0 top-0 border-t border-dashed border-cyan-500/40" />
-              <div className="absolute left-0 top-0 h-3 border-l border-dashed border-cyan-500/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute right-0 top-0 h-3 border-r border-dashed border-cyan-500/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-cyan-500/40" />
+              <div className="absolute inset-x-0 top-0 border-t border-dashed border-[#0FF0FC]/40" />
+              <div className="absolute left-0 top-0 h-3 border-l border-dashed border-[#0FF0FC]/40" style={{ transform: "translateY(-100%)" }} />
+              <div className="absolute right-0 top-0 h-3 border-r border-dashed border-[#0FF0FC]/40" style={{ transform: "translateY(-100%)" }} />
+              <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-[#0FF0FC]/40" />
             </div>
           </div>
 
           {/* On-chip acceleration */}
-          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed border-cyan-500/50 bg-cyan-400/10 px-6 py-4 xl:mt-0">
+          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed border-[#0FF0FC]/50 bg-[#0FF0FC]/10 px-6 py-4 xl:mt-0">
             <p className="flex items-center gap-2.5 text-sm font-semibold">
               <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
                 <rect x="7" y="7" width="10" height="10" rx="2" />
@@ -315,9 +315,9 @@ export default function AiTechnologiesPage() {
             {FORM_FACTORS.map((factor) => (
               <div
                 key={factor.name}
-                className="group flex flex-col items-center gap-4 rounded-[20px] border border-zinc-200 px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-[#faf6ee]"
+                className="group flex flex-col items-center gap-4 rounded-[20px] border border-zinc-200 px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0FF0FC] hover:bg-[#faf6ee]"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-700">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-[#0FF0FC]">
                   {factor.icon}
                 </span>
                 <span>

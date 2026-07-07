@@ -73,7 +73,7 @@ export default function PartnersSection() {
       `}</style>
 
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0FF0FC]">
           Our Partners
         </p>
         <h2 className="mt-3 text-headline font-semibold tracking-tight text-white">
@@ -95,7 +95,7 @@ export default function PartnersSection() {
                 {partner.wave.map((h, i) => (
                   <span
                     key={i}
-                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-cyan-400"
+                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-[#0FF0FC]"
                     style={{
                       height: `${h}%`,
                       animation: "iphipiWave 1.8s ease-in-out infinite",
@@ -105,7 +105,7 @@ export default function PartnersSection() {
                 ))}
               </div>
 
-              <span className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-zinc-400 transition-colors duration-300 group-hover:border-cyan-400/40 group-hover:text-cyan-400">
+              <span className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-zinc-400 transition-colors duration-300 group-hover:border-[#0FF0FC]/40 group-hover:text-[#0FF0FC]">
                 {partner.tag}
               </span>
 

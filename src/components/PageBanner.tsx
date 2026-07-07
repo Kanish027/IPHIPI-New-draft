@@ -24,8 +24,8 @@ export default function PageBanner({
     >
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         {/* Eyebrow pill */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-cyan-600/30 bg-cyan-600/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#0FF0FC]/30 bg-[#0FF0FC]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#0FF0FC]" />
           {eyebrow}
         </span>
 
