@@ -24,7 +24,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="px-4 pb-6 pt-20 text-white lg:px-6" style={{backgroundColor: "#4B0082"}}>
+    <footer className="px-4 pb-6 pt-20 text-white lg:px-6" style={{backgroundColor: "#1F0954"}}>
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
