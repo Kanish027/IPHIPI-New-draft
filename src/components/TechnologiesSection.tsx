@@ -140,7 +140,7 @@ export default function TechnologiesSection() {
             <div className="mb-4 flex items-center gap-2">
               <span
                 className="text-xs font-semibold uppercase tracking-[0.28em]"
-                style={{ color: COLORS.cyan }}
+                style={{ color: COLORS.cognitiveBlue }}
               >
                 IPHIPI Technologies
               </span>
