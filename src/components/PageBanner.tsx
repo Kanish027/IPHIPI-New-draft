@@ -22,7 +22,7 @@ export default function PageBanner({
     <section
       className={`relative flex min-h-[100vh] items-center overflow-hidden px-4 pb-20 pt-32 lg:px-6 ${gradient}`}
     >
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+      <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
         {/* Eyebrow pill */}
         <span className="inline-flex items-center gap-2 rounded-full border border-[#0FF0FC]/30 bg-[#0FF0FC]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
           <span className="h-1.5 w-1.5 rounded-full bg-[#0FF0FC]" />
