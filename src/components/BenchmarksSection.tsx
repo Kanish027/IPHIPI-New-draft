@@ -2,12 +2,33 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const COLORS = {
-  cognitiveBlue: "#1E3A8A", // Primary
-  cyan: "#22D3EE", // Accent
-  charcoalText: "#27272A", // Heading text (kept — matches Matte Charcoal family)
-  bodyText: "#6E6659", // Muted body copy on light background
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    primary: "#1E3A8A", // Deep Cognitive Blue
+    secondary: "#27272A", // Sleek Matte Charcoal
+    accent: "#22D3EE", // Electric Cyan / Intelligent Teal
+    bodyText: "#6E6659", // Muted body copy on light background
+    pageBg: "#FFFFFF", // Crisp Tech White
+    railInactive: "#D4D4D8",
+    railTextInactive: "#A1A1AA",
+  },
+  option2: {
+    id: "seamless-intelligence",
+    primary: "#2E1065", // Deep Midnight Violet
+    secondary: "#3F3F46", // Ash Gray
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    bodyText: "#71717A", // Ash Gray muted
+    pageBg: "#FAFAFA", // Pure Alabaster
+    railInactive: "#E5E7EB",
+    railTextInactive: "#A1A1AA",
+  },
 };
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
 
 const STATS = [
   {
@@ -92,22 +113,26 @@ export default function BenchmarksSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative h-[420vh] bg-white">
+    <section 
+      ref={sectionRef} 
+      className="relative h-[420vh] transition-colors duration-500"
+      style={{ backgroundColor: ACTIVE_THEME.pageBg }}
+    >
       <div
-        className="sticky top-0 flex h-screen flex-col overflow-hidden"
-        style={{ color: COLORS.charcoalText }}
+        className="sticky top-0 flex h-screen flex-col overflow-hidden transition-colors duration-500"
+        style={{ color: ACTIVE_THEME.secondary }}
       >
         {/* Header */}
         <div className="mx-auto w-full max-w-6xl px-4 pt-24 lg:px-6">
           <p
-            className="text-xs font-semibold uppercase tracking-[0.2em]"
-            style={{ color: COLORS.cyan }}
+            className="text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-500"
+            style={{ color: ACTIVE_THEME.accent }}
           >
             Benchmark Analysis
           </p>
           <h2
-            className="mt-3 text-subhead font-semibold tracking-tight"
-            style={{ color: COLORS.charcoalText }}
+            className="mt-3 text-subhead font-semibold tracking-tight transition-colors duration-500"
+            style={{ color: ACTIVE_THEME.secondary }}
           >
             Engineered to Industry-Leading Standards
           </h2>
@@ -131,33 +156,33 @@ export default function BenchmarksSection() {
               >
                 <p className="flex items-baseline gap-4">
                   <span
-                    className="font-geometric text-sm"
-                    style={{ color: COLORS.cyan }}
+                    className="font-geometric text-sm transition-colors duration-500"
+                    style={{ color: ACTIVE_THEME.accent }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span
-                    className="text-sm font-semibold uppercase tracking-[0.2em]"
-                    style={{ color: COLORS.bodyText }}
+                    className="text-sm font-semibold uppercase tracking-[0.2em] transition-colors duration-500"
+                    style={{ color: ACTIVE_THEME.bodyText }}
                   >
                     {stat.label}
                   </span>
                 </p>
                 <p
-                  className="mt-2 font-geometric text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums"
-                  style={{ color: COLORS.cognitiveBlue }}
+                  className="mt-2 font-geometric text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums transition-colors duration-500"
+                  style={{ color: ACTIVE_THEME.primary }}
                 >
                   {stat.value}
                   <span
-                    className="ml-2 align-top text-[0.35em] font-semibold"
-                    style={{ color: COLORS.cyan }}
+                    className="ml-2 align-top text-[0.35em] font-semibold transition-colors duration-500"
+                    style={{ color: ACTIVE_THEME.accent }}
                   >
                     {stat.suffix}
                   </span>
                 </p>
                 <p
-                  className="mt-4 max-w-md text-base leading-relaxed"
-                  style={{ color: COLORS.bodyText }}
+                  className="mt-4 max-w-md text-base leading-relaxed transition-colors duration-500"
+                  style={{ color: ACTIVE_THEME.bodyText }}
                 >
                   {stat.desc}
                 </p>
@@ -177,7 +202,7 @@ export default function BenchmarksSection() {
                 <span
                   className="font-geometric text-[10px] transition-colors duration-300"
                   style={{
-                    color: i === active ? COLORS.cyan : "#A1A1AA",
+                    color: i === active ? ACTIVE_THEME.accent : ACTIVE_THEME.railTextInactive,
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -186,7 +211,7 @@ export default function BenchmarksSection() {
                   className="h-px transition-all duration-300"
                   style={{
                     width: i === active ? "2.5rem" : "1.25rem",
-                    backgroundColor: i === active ? COLORS.cyan : "#D4D4D8",
+                    backgroundColor: i === active ? ACTIVE_THEME.accent : ACTIVE_THEME.railInactive,
                   }}
                 />
               </button>
@@ -199,10 +224,10 @@ export default function BenchmarksSection() {
           {WAVE_BARS.map((h, i) => (
             <span
               key={i}
-              className="w-1 origin-bottom rounded-full"
+              className="w-1 origin-bottom rounded-full transition-colors duration-500"
               style={{
                 height: `${h * 0.5}px`,
-                backgroundColor: COLORS.cyan,
+                backgroundColor: ACTIVE_THEME.accent,
                 opacity: 0.4,
                 animation: "iphipiWave 1.8s ease-in-out infinite",
                 animationDelay: `${i * 0.08}s`,
@@ -213,8 +238,8 @@ export default function BenchmarksSection() {
 
         {/* Footnote */}
         <p
-          className="mx-auto w-full max-w-6xl px-4 pb-6 text-xs"
-          style={{ color: COLORS.bodyText, opacity: 0.7 }}
+          className="mx-auto w-full max-w-6xl px-4 pb-6 text-xs transition-colors duration-500"
+          style={{ color: ACTIVE_THEME.bodyText, opacity: 0.7 }}
         >
           Optimized for indoor &amp; outdoor reverb — built for always-on edge AI.
         </p>

@@ -9,12 +9,40 @@ export const metadata: Metadata = {
     "Proprietary environmental noise suppression and speech enhancement — engineered for every wearable category.",
 };
 
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    primary: "#1E3A8A", // Deep Cognitive Blue
+    secondary: "#27272A", // Sleek Matte Charcoal
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentBorderMuted: "rgba(15, 240, 252, 0.4)",
+    accentBgMuted: "rgba(15, 240, 252, 0.1)",
+    pageBg: "#FFFFFF", // Crisp Tech White
+    cardHoverBg: "#F4F4F5", // Soft Gray
+  },
+  option2: {
+    id: "seamless-intelligence",
+    primary: "#2E1065", // Deep Midnight Violet
+    secondary: "#3F3F46", // Ash Gray
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentBorderMuted: "rgba(110, 231, 183, 0.4)",
+    accentBgMuted: "rgba(110, 231, 183, 0.1)",
+    pageBg: "#FAFAFA", // Pure Alabaster
+    cardHoverBg: "#F3F4F6", // Ash Gray light tint
+  },
+};
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
+
 const STAGES = [
   {
     title: "Audio Capture",
     desc: "High-performance mic input",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <rect x="9" y="2" width="6" height="12" rx="3" />
         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
       </svg>
@@ -24,7 +52,7 @@ const STAGES = [
     title: "Pre-Processing",
     desc: "Noise profiling, echo management, VAD",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 8h10M18 8h2M4 16h2M10 16h10" />
         <circle cx="16" cy="8" r="2" />
         <circle cx="8" cy="16" r="2" />
@@ -35,7 +63,7 @@ const STAGES = [
     title: "AI Noise Suppression",
     desc: "Proprietary AI models remove background noise",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <rect x="7" y="7" width="10" height="10" rx="2" />
         <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4" />
       </svg>
@@ -45,7 +73,7 @@ const STAGES = [
     title: "Speech Enhancement",
     desc: "Enhances clarity, preserves natural voice",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M3 12h2l2-5 3 10 3-14 3 12 2-6 1 3h2" />
       </svg>
     ),
@@ -54,10 +82,10 @@ const STAGES = [
     title: "Dynamic Optimization",
     desc: "Automatic gain control, equalization, adaptation",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 17a8 8 0 1 1 16 0" />
         <path d="M12 17l4-5" />
-        <circle cx="12" cy="17" r="1.2" fill="#22d3ee" stroke="none" />
+        <circle cx="12" cy="17" r="1.2" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
@@ -65,7 +93,7 @@ const STAGES = [
     title: "Output Generation",
     desc: "Crystal-clear audio output",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
         <path d="M4 9v6h4l5 4V5L8 9H4Z" />
         <path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11" />
       </svg>
@@ -75,7 +103,6 @@ const STAGES = [
 
 const SEPARATION_INPUTS = ["Speaker voice", "Background noise", "Surrounding voices"];
 
-/* Union of the deck (slide 8) and the Gamma doc lists — trim as needed */
 const FORM_FACTORS = [
   {
     name: "TWS Earbuds",
@@ -169,20 +196,21 @@ const FORM_FACTORS = [
 function Waveform({
   bars,
   className = "",
-  barClassName = "bg-[#0FF0FC]",
+  color,
 }: {
   bars: number[];
   className?: string;
-  barClassName?: string;
+  color: string;
 }) {
   return (
     <div className={`flex items-end gap-[3px] ${className}`}>
       {bars.map((h, i) => (
         <span
           key={i}
-          className={`w-1 origin-bottom rounded-full ${barClassName}`}
+          className="w-1 origin-bottom rounded-full"
           style={{
             height: `${h}%`,
+            backgroundColor: color,
             animation: "iphipiWave 1.8s ease-in-out infinite",
             animationDelay: `${i * 0.06}s`,
           }}
@@ -194,11 +222,33 @@ function Waveform({
 
 export default function AiTechnologiesPage() {
   return (
-    <main className="flex-1 bg-white pb-28 text-[#27272A]">
+    <main
+      className="flex-1 pb-28 transition-colors duration-500"
+      style={{ backgroundColor: ACTIVE_THEME.pageBg, color: ACTIVE_THEME.secondary }}
+    >
+      {/* Injecting CSS Variables for Tailwind hover states and Animations */}
       <style>{`
         @keyframes iphipiWave {
           0%, 100% { transform: scaleY(0.4); }
           50% { transform: scaleY(1); }
+        }
+        
+        /* Dynamic Theme Classes */
+        .theme-hover-card {
+          border-color: #E5E7EB; /* Default zinc-200 */
+        }
+        .theme-hover-card:hover {
+          border-color: ${ACTIVE_THEME.accent};
+          background-color: ${ACTIVE_THEME.cardHoverBg};
+        }
+        
+        .theme-hover-icon {
+          background-color: #FAFAFA; /* Default zinc-50 */
+          color: #3F3F46; /* Default zinc-700 */
+        }
+        .theme-hover-card:hover .theme-hover-icon {
+          background-color: ${ACTIVE_THEME.pageBg};
+          color: ${ACTIVE_THEME.accent};
         }
       `}</style>
 
@@ -208,9 +258,15 @@ export default function AiTechnologiesPage() {
       <MicTechShowcase />
 
       {/* NDP 115 — audio processing flow (full-bleed, like the Partners band) */}
-      <section className="mt-28 px-4 py-28 text-white lg:px-6" style={{backgroundColor: "#27272A"}}>
+      <section
+        className="mt-28 px-4 py-28 text-white transition-colors duration-500 lg:px-6"
+        style={{ backgroundColor: ACTIVE_THEME.secondary }}
+      >
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0FF0FC]">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.2em]"
+            style={{ color: ACTIVE_THEME.accent }}
+          >
             The NDP 115 — AI Audio Processor
           </p>
           <h2 className="mt-3 text-headline font-semibold tracking-tight">
@@ -228,7 +284,7 @@ export default function AiTechnologiesPage() {
               <Waveform
                 bars={[55, 25, 70, 40, 85, 30, 60]}
                 className="h-8"
-                barClassName="bg-zinc-500"
+                color="#71717A" // zinc-500
               />
               <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-zinc-400">
                 Raw audio input
@@ -246,8 +302,11 @@ export default function AiTechnologiesPage() {
               <div key={stage.title} className="flex flex-1 flex-col gap-2 xl:flex-row xl:items-stretch">
                 <div className="flex-1 rounded-[14px] border border-white/15 bg-white/5 p-4">
                   <div className="flex items-center justify-between gap-2">
-                    {stage.icon}
-                    <span className="font-geometric text-[10px] text-[#0FF0FC]">
+                    <span style={{ color: ACTIVE_THEME.accent }}>{stage.icon}</span>
+                    <span
+                      className="font-geometric text-[10px]"
+                      style={{ color: ACTIVE_THEME.accent }}
+                    >
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -266,32 +325,64 @@ export default function AiTechnologiesPage() {
             ))}
 
             {/* Enhanced output endpoint */}
-            <div className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border border-[#0FF0FC]/40 bg-[#0FF0FC]/10 px-4 py-5 xl:w-28 xl:shrink-0">
-              <Waveform bars={[45, 60, 50, 65, 52, 62, 48]} className="h-8" />
-              <p className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em] text-[#0FF0FC]">
+            <div
+              className="flex flex-col items-center justify-center gap-2.5 rounded-[14px] border px-4 py-5 xl:w-28 xl:shrink-0"
+              style={{
+                borderColor: ACTIVE_THEME.accentBorderMuted,
+                backgroundColor: ACTIVE_THEME.accentBgMuted,
+              }}
+            >
+              <Waveform
+                bars={[45, 60, 50, 65, 52, 62, 48]}
+                className="h-8"
+                color={ACTIVE_THEME.accent}
+              />
+              <p
+                className="text-center text-[10px] font-semibold uppercase leading-tight tracking-[0.15em]"
+                style={{ color: ACTIVE_THEME.accent }}
+              >
                 Enhanced audio output
               </p>
             </div>
           </div>
 
-          {/* Dashed bus down to the acceleration block (desktop) — spans the
-              six processing stages, not the input/output endpoints */}
+          {/* Dashed bus down to the acceleration block (desktop) */}
           <div className="hidden xl:block">
             <div className="relative mt-3 h-7" style={{ marginInline: "10.5rem" }}>
-              <div className="absolute inset-x-0 top-0 border-t border-dashed border-[#0FF0FC]/40" />
-              <div className="absolute left-0 top-0 h-3 border-l border-dashed border-[#0FF0FC]/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute right-0 top-0 h-3 border-r border-dashed border-[#0FF0FC]/40" style={{ transform: "translateY(-100%)" }} />
-              <div className="absolute left-1/2 top-0 h-full border-l border-dashed border-[#0FF0FC]/40" />
+              <div
+                className="absolute inset-x-0 top-0 border-t border-dashed"
+                style={{ borderColor: ACTIVE_THEME.accentBorderMuted }}
+              />
+              <div
+                className="absolute left-0 top-0 h-3 border-l border-dashed"
+                style={{ transform: "translateY(-100%)", borderColor: ACTIVE_THEME.accentBorderMuted }}
+              />
+              <div
+                className="absolute right-0 top-0 h-3 border-r border-dashed"
+                style={{ transform: "translateY(-100%)", borderColor: ACTIVE_THEME.accentBorderMuted }}
+              />
+              <div
+                className="absolute left-1/2 top-0 h-full border-l border-dashed"
+                style={{ borderColor: ACTIVE_THEME.accentBorderMuted }}
+              />
             </div>
           </div>
 
           {/* On-chip acceleration */}
-          <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed border-[#0FF0FC]/50 bg-[#0FF0FC]/10 px-6 py-4 xl:mt-0">
+          <div
+            className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-[16px] border border-dashed px-6 py-4 xl:mt-0"
+            style={{
+              borderColor: ACTIVE_THEME.accentBorderMuted,
+              backgroundColor: ACTIVE_THEME.accentBgMuted,
+            }}
+          >
             <p className="flex items-center gap-2.5 text-sm font-semibold">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-                <rect x="7" y="7" width="10" height="10" rx="2" />
-                <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4" />
-              </svg>
+              <span style={{ color: ACTIVE_THEME.accent }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+                  <rect x="7" y="7" width="10" height="10" rx="2" />
+                  <path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4" />
+                </svg>
+              </span>
               On-Chip AI Acceleration
             </p>
             <p className="text-sm text-zinc-400">
@@ -302,7 +393,6 @@ export default function AiTechnologiesPage() {
       </section>
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
-
         {/* Form factors */}
         <section className="mt-28">
           <h2 className="text-subhead font-semibold tracking-tight">
@@ -315,9 +405,9 @@ export default function AiTechnologiesPage() {
             {FORM_FACTORS.map((factor) => (
               <div
                 key={factor.name}
-                className="group flex flex-col items-center gap-4 rounded-[20px] border border-zinc-200 px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0FF0FC] hover:bg-[#faf6ee]"
+                className="theme-hover-card group flex flex-col items-center gap-4 rounded-[20px] border px-4 py-8 text-center transition-all duration-300 hover:-translate-y-0.5"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-[#0FF0FC]">
+                <span className="theme-hover-icon flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-300">
                   {factor.icon}
                 </span>
                 <span>

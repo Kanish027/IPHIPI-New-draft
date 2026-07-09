@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ResearchHero from "@/components/ResearchHero";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "R&D — IPHIPI",
@@ -8,14 +9,41 @@ export const metadata: Metadata = {
     "The research behind the agentic AI experience — productive, living, personal, and spatial intelligence.",
 };
 
-/* ------------------------------------------------------------------ */
-/*  Shared bits                                                        */
-/* ------------------------------------------------------------------ */
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    primary: "#1E3A8A", // Deep Cognitive Blue
+    secondary: "#27272A", // Sleek Matte Charcoal
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentRgb: "15, 240, 252", // For gradients and radar sweeps
+    accentBgMuted: "rgba(15, 240, 252, 0.08)",
+    pageBg: "#FFFFFF", // Crisp Tech White
+    cardBg: "#FAF6EE", // Warm off-white
+  },
+  option2: {
+    id: "seamless-intelligence",
+    primary: "#2E1065", // Deep Midnight Violet
+    secondary: "#3F3F46", // Ash Gray
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentRgb: "110, 231, 183", 
+    accentBgMuted: "rgba(110, 231, 183, 0.1)",
+    pageBg: "#FAFAFA", // Pure Alabaster
+    cardBg: "#F3F4F6", // Ash Gray light tint
+  },
+};
 
-/* Electric Cyan — "The Signal": used for audio/spatial signal indicators
-   (DOA radar, navigation/vision/audio icons). Gold stays reserved for the
-   Agentic Edge "harmony" callouts elsewhere on this page. */
-const SIGNAL = "#22d3ee";
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
+
+/* The Signal: used for audio/spatial signal indicators
+   (DOA radar, navigation/vision/audio icons). Dynamically maps to the Accent color. */
+const SIGNAL = ACTIVE_THEME.accent;
+
+/* ------------------------------------------------------------------ */
+/*  Shared bits                                                       */
+/* ------------------------------------------------------------------ */
 
 function Eyebrow({ children }: { children: string }) {
   return (
@@ -27,7 +55,10 @@ function Eyebrow({ children }: { children: string }) {
 
 function AgenticEdge({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-5">
+    <div
+      className="rounded-xl border border-zinc-200/70 p-5 transition-colors duration-500"
+      style={{ backgroundColor: ACTIVE_THEME.cardBg }}
+    >
       <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#D4AF37]">
         Agentic Edge
       </p>
@@ -42,7 +73,8 @@ function TechChips({ items }: { items: string[] }) {
       {items.map((tech) => (
         <span
           key={tech}
-          className="rounded-full border border-zinc-200 px-3.5 py-1.5 text-sm text-zinc-700"
+          className="rounded-full border border-zinc-200 px-3.5 py-1.5 text-sm transition-colors duration-500"
+          style={{ color: ACTIVE_THEME.secondary }}
         >
           {tech}
         </span>
@@ -52,7 +84,7 @@ function TechChips({ items }: { items: string[] }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Productive Intelligence — technology visualization cards (dark)    */
+/*  Productive Intelligence — technology visualization cards (dark)   */
 /* ------------------------------------------------------------------ */
 
 function TechCard({
@@ -166,8 +198,7 @@ function DoaRadar() {
         <div
           className="absolute inset-0 animate-[spin_4s_linear_infinite]"
           style={{
-            background:
-              "conic-gradient(from 0deg, rgba(34,211,238,0.35), transparent 75deg)",
+            background: `conic-gradient(from 0deg, rgba(${ACTIVE_THEME.accentRgb}, 0.35), transparent 75deg)`,
           }}
         />
       </div>
@@ -318,7 +349,33 @@ const SpeakerIcon = (
 
 export default function ResearchPage() {
   return (
-    <main className="flex-1 bg-white pb-28 text-[#27272A]">
+    <main
+      className="flex-1 pb-28 transition-colors duration-500"
+      style={{
+        backgroundColor: ACTIVE_THEME.pageBg,
+        color: ACTIVE_THEME.secondary,
+      }}
+    >
+      {/* Injecting CSS Variables for Dynamic Hover States */}
+      <style>{`
+        .theme-hover-living-card {
+          border-color: #E5E7EB; /* Default zinc-200 */
+        }
+        .theme-hover-living-card:hover {
+          border-color: ${ACTIVE_THEME.accent};
+          background-color: ${ACTIVE_THEME.accentBgMuted};
+        }
+        
+        .theme-hover-living-icon {
+          background-color: #FAFAFA; /* Default zinc-50 */
+          color: #3F3F46; /* Default zinc-700 */
+        }
+        .theme-hover-living-card:hover .theme-hover-living-icon {
+          background-color: ${ACTIVE_THEME.pageBg};
+          color: ${ACTIVE_THEME.primary};
+        }
+      `}</style>
+
       <ResearchHero />
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
@@ -363,9 +420,11 @@ export default function ResearchPage() {
             </div>
           </div>
 
-          {/* Technology visualization cards — dark panel, matching the dark
-              sections on the AI Technologies page */}
-          <div className="mt-10 rounded-xl p-6 text-white sm:p-8" style={{backgroundColor: "#27272A"}}>
+          {/* Technology visualization cards — dynamically tracking Secondary theme color */}
+          <div
+            className="mt-10 rounded-xl p-6 text-white sm:p-8 transition-colors duration-500"
+            style={{ backgroundColor: ACTIVE_THEME.secondary }}
+          >
             <div className="grid gap-4 md:grid-cols-3">
               <TechCard
                 icon={<>{MicIcon}<span className="text-xs font-medium">Speech Enhancement</span></>}
@@ -480,9 +539,9 @@ export default function ResearchPage() {
             ].map((f) => (
               <div
                 key={f.name}
-                className="group flex items-start gap-4 rounded-xl border border-zinc-200 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-cyan-50"
+                className="theme-hover-living-card group flex items-start gap-4 rounded-xl border p-5 transition-all duration-300 hover:-translate-y-0.5"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-zinc-50 text-zinc-700 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-700">
+                <span className="theme-hover-living-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-300">
                   {f.icon}
                 </span>
                 <span>

@@ -4,13 +4,31 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-// Brand palette — "Cognitive Partner" (Option 1)
-const COLORS = {
-  cognitiveBlue: "#1E3A8A", // Primary
-  cyan: "#22D3EE", // Accent
-  charcoalText: "#27272A", // Heading text (kept — matches Matte Charcoal family)
-  bodyText: "#6E6659", // Muted body copy on light background
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    primary: "#1E3A8A", // Deep Cognitive Blue
+    secondary: "#27272A", // Sleek Matte Charcoal
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentRgb: "15, 240, 252", // For rgba manipulation in tags
+    bodyText: "#6E6659", // Muted body copy on light background
+    pageBg: "#FFFFFF",
+  },
+  option2: {
+    id: "seamless-intelligence",
+    primary: "#2E1065", // Deep Midnight Violet
+    secondary: "#3F3F46", // Ash Gray
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentRgb: "110, 231, 183", // For rgba manipulation in tags
+    bodyText: "#71717A", // Ash Gray muted
+    pageBg: "#FAFAFA",
+  },
 };
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
 
 const TECHS = [
   {
@@ -76,23 +94,23 @@ function MediaBlock({
 
       <div className="absolute left-4 top-4 z-20 md:left-5 md:top-5">
         <div
-          className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.22)] backdrop-blur-2xl backdrop-saturate-150 md:px-4 md:py-2"
+          className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-white shadow-[0_10px_30px_rgba(0,0,0,0.22)] backdrop-blur-2xl backdrop-saturate-150 transition-colors duration-500 md:px-4 md:py-2"
           style={{
-            borderColor: `${COLORS.cyan}40`,
-            backgroundColor: `${COLORS.cyan}14`,
+            borderColor: `rgba(${ACTIVE_THEME.accentRgb}, 0.25)`, // equivalent to ~40 hex
+            backgroundColor: `rgba(${ACTIVE_THEME.accentRgb}, 0.08)`, // equivalent to ~14 hex
           }}
         >
           <div
-            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full ring-1"
+            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full ring-1 transition-colors duration-500"
             style={{
-              backgroundColor: `${COLORS.cyan}26`,
+              backgroundColor: `rgba(${ACTIVE_THEME.accentRgb}, 0.15)`, // equivalent to ~26 hex
               // @ts-expect-error -- ring color via CSS var
-              "--tw-ring-color": `${COLORS.cyan}40`,
+              "--tw-ring-color": `rgba(${ACTIVE_THEME.accentRgb}, 0.25)`,
             }}
           >
             <div
-              className="h-1.5 w-1.5 animate-pulse rounded-full"
-              style={{ backgroundColor: COLORS.cyan }}
+              className="h-1.5 w-1.5 animate-pulse rounded-full transition-colors duration-500"
+              style={{ backgroundColor: ACTIVE_THEME.accent }}
             />
           </div>
           <span className="text-[11px] font-semibold tracking-[0.18em] text-white/95 md:text-[12px]">
@@ -126,12 +144,14 @@ export default function TechnologiesSection() {
     <section
       ref={containerRef}
       id="technologies"
-      className="relative overflow-hidden py-28 md:py-36 lg:py-48"
+      className="relative overflow-hidden py-28 transition-colors duration-500 md:py-36 lg:py-48"
+      style={{ backgroundColor: ACTIVE_THEME.pageBg }}
     >
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 transition-colors duration-500"
         style={{
-          backgroundImage: `radial-gradient(circle at top, ${COLORS.cognitiveBlue}14, transparent 35%), radial-gradient(circle at bottom, ${COLORS.cyan}0D, transparent 42%)`,
+          // Using hex opacity suffixes: 14 = ~8%, 0D = ~5%
+          backgroundImage: `radial-gradient(circle at top, ${ACTIVE_THEME.primary}14, transparent 35%), radial-gradient(circle at bottom, ${ACTIVE_THEME.accent}0D, transparent 42%)`,
         }}
       />
       <div className="relative mx-auto max-w-[1500px] px-6 md:px-12">
@@ -139,15 +159,15 @@ export default function TechnologiesSection() {
           <div className="col-span-6 md:col-span-7">
             <div className="mb-4 flex items-center gap-2">
               <span
-                className="text-xs font-semibold uppercase tracking-[0.28em]"
-                style={{ color: COLORS.cognitiveBlue }}
+                className="text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-500"
+                style={{ color: ACTIVE_THEME.primary }}
               >
                 IPHIPI Technologies
               </span>
             </div>
             <h2
-              className="max-w-xl text-4xl font-medium tracking-tight md:text-5xl lg:text-6xl"
-              style={{ color: COLORS.charcoalText }}
+              className="max-w-xl text-4xl font-medium tracking-tight transition-colors duration-500 md:text-5xl lg:text-6xl"
+              style={{ color: ACTIVE_THEME.secondary }}
             >
               Adaptive Audio Intelligence.
             </h2>
@@ -155,8 +175,8 @@ export default function TechnologiesSection() {
 
           <div className="flex flex-col justify-end md:col-span-5 md:col-start-8 lg:col-span-5 lg:col-start-8">
             <p
-              className="max-w-md text-lg leading-relaxed lg:text-xl"
-              style={{ color: COLORS.bodyText }}
+              className="max-w-md text-lg leading-relaxed transition-colors duration-500 lg:text-xl"
+              style={{ color: ACTIVE_THEME.bodyText }}
             >
               Four core technologies — engineered for every wearable category.
               Scroll to explore the architecture.

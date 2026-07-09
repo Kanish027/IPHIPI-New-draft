@@ -6,6 +6,32 @@ export const metadata: Metadata = {
   description: "Get in touch with the IPHIPI team.",
 };
 
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    primary: "#1E3A8A", // Deep Cognitive Blue
+    secondary: "#27272A", // Sleek Matte Charcoal
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentBgMuted: "rgba(15, 240, 252, 0.08)", // Replaces cyan-50
+    pageBg: "#FFFFFF", // Crisp Tech White
+    cardBg: "#FAF6EE", // Warm off-white for contrast
+  },
+  option2: {
+    id: "seamless-intelligence",
+    primary: "#2E1065", // Deep Midnight Violet
+    secondary: "#3F3F46", // Ash Gray
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentBgMuted: "rgba(110, 231, 183, 0.1)", // Mint tint
+    pageBg: "#FAFAFA", // Pure Alabaster
+    cardBg: "#F3F4F6", // Ash Gray light tint
+  },
+};
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
+
 const CHANNELS = [
   {
     title: "Partnerships",
@@ -27,7 +53,26 @@ const SOCIALS = [
 
 export default function ContactPage() {
   return (
-    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-[#27272A] lg:px-6">
+    <main
+      className="flex-1 px-4 pb-28 pt-44 transition-colors duration-500 lg:px-6"
+      style={{
+        backgroundColor: ACTIVE_THEME.pageBg,
+        color: ACTIVE_THEME.secondary,
+      }}
+    >
+      {/* Injecting CSS Variables for Tailwind hover states */}
+      <style>{`
+        .theme-social-link {
+          border-color: #E5E7EB; /* zinc-200 */
+          color: #3F3F46; /* zinc-700 */
+        }
+        .theme-social-link:hover {
+          border-color: ${ACTIVE_THEME.accent};
+          background-color: ${ACTIVE_THEME.accentBgMuted};
+          color: ${ACTIVE_THEME.primary};
+        }
+      `}</style>
+
       <div className="mx-auto w-full max-w-6xl">
         {/* Page header */}
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
@@ -46,14 +91,19 @@ export default function ContactPage() {
           {CHANNELS.map((channel) => (
             <div
               key={channel.title}
-              className="rounded-xl border border-zinc-200/70 bg-[#faf6ee] p-8"
+              className="rounded-xl border border-zinc-200/70 p-8 transition-colors duration-500"
+              style={{ backgroundColor: ACTIVE_THEME.cardBg }}
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#D4AF37]">
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.15em]"
+                style={{ color: ACTIVE_THEME.primary }}
+              >
                 {channel.title}
               </p>
               <a
                 href={`mailto:${channel.email}`}
                 className="mt-4 inline-block text-lg font-medium underline-offset-4 transition hover:underline"
+                style={{ textDecorationColor: ACTIVE_THEME.accent }}
               >
                 {channel.email}
               </a>
@@ -96,7 +146,7 @@ export default function ContactPage() {
                     <a
                       key={social.label}
                       href={social.href}
-                      className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition-colors duration-300 hover:border-cyan-500 hover:bg-cyan-50"
+                      className="theme-social-link rounded-full border px-4 py-2 text-sm transition-all duration-300"
                     >
                       {social.label}
                     </a>
@@ -107,7 +157,7 @@ export default function ContactPage() {
           </aside>
 
           <section className="lg:col-span-3">
-            <div className="rounded-xl border border-zinc-200 p-6 sm:p-8">
+            <div className="rounded-xl border border-zinc-200 p-6 sm:p-8 bg-white">
               <ContactForm />
             </div>
           </section>

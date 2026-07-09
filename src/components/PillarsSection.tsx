@@ -1,6 +1,37 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import React from "react";
+
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    sectionBg: "#1C1C1E", // Deep Charcoal
+    cardBg: "#2A2A2D", // Charcoal Card Base
+    primaryGlow: "#1E3A8A", // Deep Cognitive Blue
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentMuted: "rgba(15, 240, 252, 0.1)",
+    textHeading: "#F5F7FA", // Tech White
+    textBody: "#A0A4AC", // Soft Gray
+    textInactive: "#6B6E76", // Muted text for inactive cards
+  },
+  option2: {
+    id: "seamless-intelligence",
+    sectionBg: "#18181B", // Very Dark Ash Gray (zinc-900)
+    cardBg: "#27272A", // Dark Ash Gray (zinc-800)
+    primaryGlow: "#2E1065", // Deep Midnight Violet
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentMuted: "rgba(110, 231, 183, 0.1)",
+    textHeading: "#FAFAFA", // Pure Alabaster
+    textBody: "#D4D4D8", // Light Ash Gray
+    textInactive: "#71717A", // Muted text for inactive cards
+  },
+};
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
 
 const PILLARS = [
   {
@@ -84,17 +115,6 @@ const PILLARS = [
   },
 ];
 
-// Brand palette — "Cognitive Partner" (Option 1)
-const COLORS = {
-  charcoalBg: "#1C1C1E", // Secondary — section background
-  charcoalCard: "#2A2A2D", // Charcoal, lighter — card base
-  cognitiveBlue: "#1E3A8A", // Primary — glow / focus accents
-  cyan: "#22D3EE", // Accent — active states, pill, dots
-  cyanMuted: "#22D3EE1A", // Accent 10% — pill fill
-  techWhite: "#F5F7FA", // Neutral — headings
-  softGray: "#A0A4AC", // Neutral — body copy
-};
-
 const CARD_WIDTH = 300;
 const CARD_GAP = 28;
 const STEP = CARD_WIDTH + CARD_GAP;
@@ -134,13 +154,18 @@ function PillarCard({
         transform: `translate(calc(-50% + ${distance * STEP}px), -50%) scale(${scale})`,
         opacity,
         zIndex: 20 - absDistance,
-        backgroundColor: COLORS.charcoalCard,
+        backgroundColor: ACTIVE_THEME.cardBg,
         boxShadow: isActive
-          ? `0 0 0 1px rgba(255,255,255,0.08), 0 20px 60px -20px ${COLORS.cognitiveBlue}66`
+          ? `0 0 0 1px rgba(255,255,255,0.08), 0 20px 60px -20px ${ACTIVE_THEME.primaryGlow}80`
           : undefined,
       }}
-      className="group absolute top-1/2 h-[420px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 text-left shadow-2xl transition-[transform,opacity,box-shadow] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2"
-      onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.cyan}`)}
+      className="group absolute top-1/2 h-[420px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 text-left shadow-2xl transition-[transform,opacity,box-shadow,background-color] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2"
+      onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 2px ${ACTIVE_THEME.accent}`)}
+      onBlur={(e) =>
+        (e.currentTarget.style.boxShadow = isActive
+          ? `0 0 0 1px rgba(255,255,255,0.08), 0 20px 60px -20px ${ACTIVE_THEME.primaryGlow}80`
+          : "none")
+      }
     >
       <img
         src={image}
@@ -157,7 +182,10 @@ function PillarCard({
         <div className="flex items-start justify-between gap-4">
           <div
             className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 backdrop-blur-sm"
-            style={{ backgroundColor: "rgba(255,255,255,0.1)", color: COLORS.techWhite }}
+            style={{
+              backgroundColor: "rgba(255,255,255,0.1)",
+              color: ACTIVE_THEME.textHeading,
+            }}
           >
             {icon}
           </div>
@@ -171,19 +199,21 @@ function PillarCard({
 
         <h3
           className="mt-6 text-lg font-semibold tracking-tight transition-colors duration-300"
-          style={{ color: COLORS.techWhite }}
+          style={{ color: ACTIVE_THEME.textHeading }}
           onMouseEnter={(e) => {
-            if (isActive) e.currentTarget.style.color = COLORS.cyan;
+            if (isActive) e.currentTarget.style.color = ACTIVE_THEME.accent;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = COLORS.techWhite;
+            e.currentTarget.style.color = ACTIVE_THEME.textHeading;
           }}
         >
           {title}
         </h3>
         <p
           className="mt-3 text-sm leading-7 transition-colors duration-300"
-          style={{ color: isActive ? COLORS.softGray : "#6B6E76" }}
+          style={{
+            color: isActive ? ACTIVE_THEME.textBody : ACTIVE_THEME.textInactive,
+          }}
         >
           {body}
         </p>
@@ -217,22 +247,22 @@ export default function PillarsSection() {
 
   return (
     <section
-      className="relative overflow-hidden px-4 py-28 lg:px-6"
-      style={{ backgroundColor: COLORS.charcoalBg }}
+      className="relative overflow-hidden px-4 py-28 transition-colors duration-500 lg:px-6"
+      style={{ backgroundColor: ACTIVE_THEME.sectionBg }}
     >
-      {/* Primary — Deep Cognitive Blue ambient glow */}
+      {/* Ambient glow matching the active theme primary color */}
       <div className="pointer-events-none absolute inset-0">
         {/* <div
-          className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full blur-3xl"
-          style={{ backgroundColor: `${COLORS.cognitiveBlue}22` }}
+          className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full blur-3xl transition-colors duration-500"
+          style={{ backgroundColor: `${ACTIVE_THEME.primaryGlow}22` }}
         />
         <div
-          className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full blur-3xl"
-          style={{ backgroundColor: `${COLORS.cognitiveBlue}1A` }}
+          className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full blur-3xl transition-colors duration-500"
+          style={{ backgroundColor: `${ACTIVE_THEME.primaryGlow}1A` }}
         />
         <div
-          className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full blur-3xl"
-          style={{ backgroundColor: `${COLORS.cognitiveBlue}14` }}
+          className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full blur-3xl transition-colors duration-500"
+          style={{ backgroundColor: `${ACTIVE_THEME.primaryGlow}14` }}
         /> */}
       </div>
 
@@ -240,26 +270,32 @@ export default function PillarsSection() {
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
             <p
-              className="inline-flex items-center gap-3 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] backdrop-blur-sm"
-              style={{ backgroundColor: COLORS.cyanMuted, color: COLORS.cyan }}
+              className="inline-flex items-center gap-3 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] backdrop-blur-sm transition-colors duration-500"
+              style={{
+                backgroundColor: ACTIVE_THEME.accentMuted,
+                color: ACTIVE_THEME.accent,
+              }}
             >
-              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: COLORS.cyan }} />
+              <span
+                className="h-2 w-2 rounded-full transition-colors duration-500"
+                style={{ backgroundColor: ACTIVE_THEME.accent }}
+              />
               Agentic AI Experience
             </p>
 
             <h2
-              className="mt-6 text-headline font-semibold tracking-tight"
-              style={{ color: COLORS.techWhite }}
+              className="mt-6 text-headline font-semibold tracking-tight transition-colors duration-500"
+              style={{ color: ACTIVE_THEME.textHeading }}
             >
               Intelligence Everywhere You Go
             </h2>
 
             <p
-              className="mt-5 max-w-2xl sm:text-lg sm:leading-8"
-              style={{ color: COLORS.softGray }}
+              className="mt-5 max-w-2xl transition-colors duration-500 sm:text-lg sm:leading-8"
+              style={{ color: ACTIVE_THEME.textBody }}
             >
-              Reduces cognitive load. Lets you focus on what matters. Proactive support
-              across work, home, health, and the world around you.
+              Reduces cognitive load. Lets you focus on what matters. Proactive
+              support across work, home, health, and the world around you.
             </p>
           </div>
 
@@ -270,8 +306,12 @@ export default function PillarsSection() {
               aria-label="Previous pillar"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-all hover:-translate-y-0.5"
               style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.cyanMuted)}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = ACTIVE_THEME.accentMuted)
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")
+              }
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                 <path d="M15 18l-6-6 6-6" />
@@ -283,8 +323,12 @@ export default function PillarsSection() {
               aria-label="Next pillar"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-all hover:-translate-y-0.5"
               style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.cyanMuted)}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = ACTIVE_THEME.accentMuted)
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")
+              }
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                 <path d="M9 18l6-6-6-6" />
@@ -319,8 +363,14 @@ export default function PillarsSection() {
             type="button"
             onClick={goPrev}
             aria-label="Previous pillar"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors duration-300"
             style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = ACTIVE_THEME.accentMuted)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")
+            }
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M15 18l-6-6 6-6" />
@@ -336,7 +386,10 @@ export default function PillarsSection() {
                 className="h-1.5 rounded-full transition-all duration-300"
                 style={{
                   width: index === activeIndex ? "1.5rem" : "0.375rem",
-                  backgroundColor: index === activeIndex ? COLORS.cyan : "rgba(255,255,255,0.2)",
+                  backgroundColor:
+                    index === activeIndex
+                      ? ACTIVE_THEME.accent
+                      : "rgba(255,255,255,0.2)",
                 }}
               />
             ))}
@@ -345,8 +398,14 @@ export default function PillarsSection() {
             type="button"
             onClick={goNext}
             aria-label="Next pillar"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors duration-300"
             style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = ACTIVE_THEME.accentMuted)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")
+            }
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M9 18l6-6-6-6" />
@@ -364,7 +423,10 @@ export default function PillarsSection() {
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: index === activeIndex ? "1.5rem" : "0.375rem",
-                backgroundColor: index === activeIndex ? COLORS.cyan : "rgba(255,255,255,0.2)",
+                backgroundColor:
+                  index === activeIndex
+                    ? ACTIVE_THEME.accent
+                    : "rgba(255,255,255,0.2)",
               }}
             />
           ))}

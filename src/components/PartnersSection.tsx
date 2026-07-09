@@ -1,12 +1,28 @@
 "use client";
 
-// Brand palette — "Cognitive Partner" (Option 1)
-const COLORS = {
-  cognitiveBlueDeep: "#152A63", // Primary, darkened — section background
-  cyan: "#22D3EE", // Accent — replaces ad-hoc #00D2FF
-  techWhite: "#F5F7FA", // Neutral — headings / wordmarks
-  softGray: "#A0A4AC", // Neutral — body copy
+// --- BRAND COLOR PALETTE OPTIONS ---
+const THEMES = {
+  option1: {
+    id: "cognitive-partner",
+    sectionBg: "#152A63", // Deep Cognitive Blue (Darkened for contrast)
+    accent: "#0FF0FC", // Electric Cyan / Intelligent Teal
+    accentMuted: "rgba(15, 240, 252, 0.4)",
+    textHeading: "#F5F7FA", // Tech White
+    textBody: "#A0A4AC", // Soft Gray
+  },
+  option2: {
+    id: "seamless-intelligence",
+    sectionBg: "#1D0A40", // Deep Midnight Violet (Darkened for contrast)
+    accent: "#6EE7B7", // Luminescent Mint / Neo-Green
+    accentMuted: "rgba(110, 231, 183, 0.4)",
+    textHeading: "#FAFAFA", // Pure Alabaster
+    textBody: "#D4D4D8", // Ash Gray (Light tint)
+  },
 };
+
+// Toggle this variable to switch between brand palettes globally across this component
+const ACTIVE_THEME = THEMES.option1;
+// -----------------------------------
 
 const PARTNERS = [
   {
@@ -31,42 +47,76 @@ const PARTNERS = [
 
 export default function PartnersSection() {
   return (
-    <section className="px-4 py-28 lg:px-6" style={{ backgroundColor: COLORS.cognitiveBlueDeep }}>
+    <section 
+      className="px-4 py-28 transition-colors duration-500 lg:px-6" 
+      style={{ backgroundColor: ACTIVE_THEME.sectionBg }}
+    >
       <style>{`
         @keyframes iphipiWave {
           0%, 100% { transform: scaleY(0.45); }
           50% { transform: scaleY(1); }
         }
+        
+        /* Dynamic Theme Hover States */
+        .theme-partner-card {
+          border-color: rgba(255, 255, 255, 0.1);
+          background-color: rgba(255, 255, 255, 0.03);
+        }
+        .theme-partner-card:hover {
+          border-color: rgba(255, 255, 255, 0.2);
+          background-color: rgba(255, 255, 255, 0.06);
+        }
+        
+        .theme-hover-wave {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+        .theme-partner-card:hover .theme-hover-wave {
+          background-color: ${ACTIVE_THEME.accent};
+        }
+        
+        .theme-hover-tag {
+          color: ${ACTIVE_THEME.textBody};
+          border-color: rgba(255, 255, 255, 0.15);
+        }
+        .theme-partner-card:hover .theme-hover-tag {
+          color: ${ACTIVE_THEME.accent};
+          border-color: ${ACTIVE_THEME.accentMuted};
+        }
       `}</style>
+      
       <div className="mx-auto max-w-6xl">
         <p
-          className="text-xs font-semibold uppercase tracking-[0.2em]"
-          style={{ color: COLORS.cyan }}
+          className="text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-500"
+          style={{ color: ACTIVE_THEME.accent }}
         >
           Our Partners
         </p>
         <h2
-          className="mt-3 text-headline font-semibold tracking-tight"
-          style={{ color: COLORS.techWhite }}
+          className="mt-3 text-headline font-semibold tracking-tight transition-colors duration-500"
+          style={{ color: ACTIVE_THEME.textHeading }}
         >
           Trusted by Industry Leaders
         </h2>
-        <p className="mt-4 max-w-2xl" style={{ color: COLORS.softGray }}>
+        <p 
+          className="mt-4 max-w-2xl transition-colors duration-500" 
+          style={{ color: ACTIVE_THEME.textBody }}
+        >
           IPHIPI partners with leading OEMs and consumer electronics brands —
           bringing agentic AI to millions of users worldwide.
         </p>
+        
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {PARTNERS.map((partner) => (
             <div
               key={partner.name}
-              className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+              className="theme-partner-card group relative overflow-hidden rounded-[28px] border p-8 transition-colors duration-300"
             >
               {/* Signature element: ambient waveform, reacts on hover */}
               <div className="mb-10 flex h-16 items-end gap-[3px]">
                 {partner.wave.map((h, i) => (
                   <span
                     key={i}
-                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-[#22D3EE]"
+                    className="theme-hover-wave w-1 origin-bottom rounded-full transition-colors duration-300"
                     style={{
                       height: `${h}%`,
                       animation: "iphipiWave 1.8s ease-in-out infinite",
@@ -76,19 +126,21 @@ export default function PartnersSection() {
                 ))}
               </div>
               <span
-                className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide transition-colors duration-300 group-hover:border-[#22D3EE]/40 group-hover:text-[#22D3EE]"
-                style={{ color: COLORS.softGray }}
+                className="theme-hover-tag inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide transition-colors duration-300"
               >
                 {partner.tag}
               </span>
               {/* Wordmark placeholder — swap for partner logo assets */}
               <p
-                className="mt-5 text-3xl font-semibold tracking-tight"
-                style={{ color: COLORS.techWhite }}
+                className="mt-5 text-3xl font-semibold tracking-tight transition-colors duration-500"
+                style={{ color: ACTIVE_THEME.textHeading }}
               >
                 {partner.name}
               </p>
-              <p className="mt-3 text-sm leading-relaxed" style={{ color: COLORS.softGray }}>
+              <p 
+                className="mt-3 text-sm leading-relaxed transition-colors duration-500" 
+                style={{ color: ACTIVE_THEME.textBody }}
+              >
                 {partner.body}
               </p>
             </div>
