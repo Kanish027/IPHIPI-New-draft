@@ -1,157 +1,3 @@
-// const PILLARS = [
-//   {
-//     title: "Work Intelligence",
-//     body: "An always-on work companion. Manages conversations, notifications, and workflows — reducing cognitive load.",
-//     icon: (
-//       <svg
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="1.8"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-5 w-5"
-//         aria-hidden="true"
-//       >
-//         <rect x="3" y="7" width="18" height="13" rx="2" />
-//         <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-//       </svg>
-//     ),
-//   },
-//   {
-//     title: "Living Intelligence",
-//     body: "Transforms living spaces into intelligent environments. Anticipates needs, simplifies routines, automates homes.",
-//     icon: (
-//       <svg
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="1.8"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-5 w-5"
-//         aria-hidden="true"
-//       >
-//         <path d="M3 10.5 12 3l9 7.5" />
-//         <path d="M5 9.5V21h14V9.5" />
-//       </svg>
-//     ),
-//   },
-//   {
-//     title: "Personal Intelligence",
-//     body: "Beyond health tracking. Understands physical, emotional, and environmental context for healthier decisions.",
-//     icon: (
-//       <svg
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="1.8"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-5 w-5"
-//         aria-hidden="true"
-//       >
-//         <path d="M12 21s-7.5-4.7-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12c-2 4.3-9.5 9-9.5 9z" />
-//       </svg>
-//     ),
-//   },
-//   {
-//     title: "Spatial Intelligence",
-//     body: "Vision that sees and understands. Analyzes scenes in real time, giving AI the context edge in the visual era.",
-//     icon: (
-//       <svg
-//         viewBox="0 0 24 24"
-//         fill="none"
-//         stroke="currentColor"
-//         strokeWidth="1.8"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//         className="h-5 w-5"
-//         aria-hidden="true"
-//       >
-//         <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-//         <circle cx="12" cy="12" r="3" />
-//       </svg>
-//     ),
-//   },
-// ];
-
-// function PillarCard({
-//   title,
-//   body,
-//   icon,
-//   index,
-// }: {
-//   title: string;
-//   body: string;
-//   icon: React.ReactNode;
-//   index: number;
-// }) {
-//   return (
-//     <article className="group relative overflow-hidden rounded-3xl border border-zinc-100 bg-zinc-50 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-//       <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-white/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-//       <div className="absolute right-[-2rem] top-[-2rem] h-24 w-24 rounded-full bg-white/70 blur-2xl" />
-//       <div className="relative">
-//         <div className="flex items-start justify-between gap-4">
-//           <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-zinc-100 bg-white text-zinc-700 shadow-sm">
-//             {icon}
-//           </div>
-//           <span className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-300">
-//             0{index + 1}
-//           </span>
-//         </div>
-
-//         <h3 className="mt-6 text-lg font-semibold tracking-tight text-zinc-950">
-//           {title}
-//         </h3>
-//         <p className="mt-3 text-sm leading-7 text-zinc-500">{body}</p>
-//       </div>
-//     </article>
-//   );
-// }
-
-// export default function PillarsSection() {
-//   return (
-//     <section className="relative overflow-hidden px-4 py-28 lg:px-6">
-//       <div className="pointer-events-none absolute inset-0">
-//         <div className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full bg-zinc-100 blur-3xl" />
-//         <div className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full bg-zinc-100 blur-3xl" />
-//         <div className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full bg-zinc-100 blur-3xl" />
-//       </div>
-
-//       <div className="relative mx-auto max-w-6xl">
-//         <div className="max-w-3xl">
-//           <p className="inline-flex items-center gap-3 rounded-full border border-zinc-100 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400 shadow-sm backdrop-blur-sm">
-//             <span className="h-2 w-2 rounded-full bg-zinc-400" />
-//             Agentic AI Experience
-//           </p>
-
-//           <h2 className="mt-6 text-3xl font-semibold tracking-tight text-zinc-950 sm:text-4xl lg:text-5xl">
-//             Intelligence Everywhere You Go
-//           </h2>
-
-//           <p className="mt-5 max-w-2xl text-zinc-500 sm:text-lg sm:leading-8">
-//             Reduces cognitive load. Lets you focus on what matters. Proactive support
-//             across work, home, health, and the world around you.
-//           </p>
-//         </div>
-
-//         <div className="mt-14 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-//           {PILLARS.map((pillar, index) => (
-//             <PillarCard
-//               key={pillar.title}
-//               title={pillar.title}
-//               body={pillar.body}
-//               icon={pillar.icon}
-//               index={index}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
@@ -238,6 +84,17 @@ const PILLARS = [
   },
 ];
 
+// Brand palette — "Cognitive Partner" (Option 1)
+const COLORS = {
+  charcoalBg: "#1C1C1E", // Secondary — section background
+  charcoalCard: "#2A2A2D", // Charcoal, lighter — card base
+  cognitiveBlue: "#1E3A8A", // Primary — glow / focus accents
+  cyan: "#22D3EE", // Accent — active states, pill, dots
+  cyanMuted: "#22D3EE1A", // Accent 10% — pill fill
+  techWhite: "#F5F7FA", // Neutral — headings
+  softGray: "#A0A4AC", // Neutral — body copy
+};
+
 const CARD_WIDTH = 300;
 const CARD_GAP = 28;
 const STEP = CARD_WIDTH + CARD_GAP;
@@ -277,8 +134,13 @@ function PillarCard({
         transform: `translate(calc(-50% + ${distance * STEP}px), -50%) scale(${scale})`,
         opacity,
         zIndex: 20 - absDistance,
+        backgroundColor: COLORS.charcoalCard,
+        boxShadow: isActive
+          ? `0 0 0 1px rgba(255,255,255,0.08), 0 20px 60px -20px ${COLORS.cognitiveBlue}66`
+          : undefined,
       }}
-      className="group absolute top-1/2 h-[420px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 text-left shadow-2xl transition-[transform,opacity] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+      className="group absolute top-1/2 h-[420px] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 text-left shadow-2xl transition-[transform,opacity,box-shadow] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2"
+      onFocus={(e) => (e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.cyan}`)}
     >
       <img
         src={image}
@@ -293,25 +155,35 @@ function PillarCard({
 
       <div className="relative flex h-full flex-col justify-end p-6">
         <div className="flex items-start justify-between gap-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-sm">
+          <div
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 backdrop-blur-sm"
+            style={{ backgroundColor: "rgba(255,255,255,0.1)", color: COLORS.techWhite }}
+          >
             {icon}
           </div>
-          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-white/50">
+          <span
+            className="text-xs font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "rgba(255,255,255,0.5)" }}
+          >
             0{index + 1}
           </span>
         </div>
 
         <h3
-          className={`mt-6 text-lg font-semibold tracking-tight transition-colors duration-300 ${
-            isActive ? "text-white group-hover:text-amber-300" : "text-white"
-          }`}
+          className="mt-6 text-lg font-semibold tracking-tight transition-colors duration-300"
+          style={{ color: COLORS.techWhite }}
+          onMouseEnter={(e) => {
+            if (isActive) e.currentTarget.style.color = COLORS.cyan;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = COLORS.techWhite;
+          }}
         >
           {title}
         </h3>
         <p
-          className={`mt-3 text-sm leading-7 transition-colors duration-300 ${
-            isActive ? "text-zinc-300 group-hover:text-white" : "text-zinc-400"
-          }`}
+          className="mt-3 text-sm leading-7 transition-colors duration-300"
+          style={{ color: isActive ? COLORS.softGray : "#6B6E76" }}
         >
           {body}
         </p>
@@ -344,26 +216,48 @@ export default function PillarsSection() {
   }, [goPrev, goNext]);
 
   return (
-    <section className="relative overflow-hidden px-4 py-28 lg:px-6" style={{backgroundColor: "#121212"}}>
+    <section
+      className="relative overflow-hidden px-4 py-28 lg:px-6"
+      style={{ backgroundColor: COLORS.charcoalBg }}
+    >
+      {/* Primary — Deep Cognitive Blue ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        {/* <div className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full bg-white/5 blur-3xl" /> */}
-        {/* <div className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full bg-white/5 blur-3xl" /> */}
-        {/* <div className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full bg-white/5 blur-3xl" /> */}
+        <div
+          className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full blur-3xl"
+          style={{ backgroundColor: `${COLORS.cognitiveBlue}22` }}
+        />
+        <div
+          className="absolute right-[-10rem] top-32 h-96 w-96 rounded-full blur-3xl"
+          style={{ backgroundColor: `${COLORS.cognitiveBlue}1A` }}
+        />
+        <div
+          className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full blur-3xl"
+          style={{ backgroundColor: `${COLORS.cognitiveBlue}14` }}
+        />
       </div>
 
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
-            <p className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400 backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-zinc-400" />
+            <p
+              className="inline-flex items-center gap-3 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] backdrop-blur-sm"
+              style={{ backgroundColor: COLORS.cyanMuted, color: COLORS.cyan }}
+            >
+              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: COLORS.cyan }} />
               Agentic AI Experience
             </p>
 
-            <h2 className="mt-6 text-headline font-semibold tracking-tight text-white">
+            <h2
+              className="mt-6 text-headline font-semibold tracking-tight"
+              style={{ color: COLORS.techWhite }}
+            >
               Intelligence Everywhere You Go
             </h2>
 
-            <p className="mt-5 max-w-2xl text-zinc-400 sm:text-lg sm:leading-8">
+            <p
+              className="mt-5 max-w-2xl sm:text-lg sm:leading-8"
+              style={{ color: COLORS.softGray }}
+            >
               Reduces cognitive load. Lets you focus on what matters. Proactive support
               across work, home, health, and the world around you.
             </p>
@@ -374,7 +268,10 @@ export default function PillarsSection() {
               type="button"
               onClick={goPrev}
               aria-label="Previous pillar"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all hover:-translate-y-0.5 hover:bg-white/10"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-all hover:-translate-y-0.5"
+              style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.cyanMuted)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                 <path d="M15 18l-6-6 6-6" />
@@ -384,7 +281,10 @@ export default function PillarsSection() {
               type="button"
               onClick={goNext}
               aria-label="Next pillar"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all hover:-translate-y-0.5 hover:bg-white/10"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white transition-all hover:-translate-y-0.5"
+              style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.cyanMuted)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)")}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                 <path d="M9 18l6-6-6-6" />
@@ -419,7 +319,8 @@ export default function PillarsSection() {
             type="button"
             onClick={goPrev}
             aria-label="Previous pillar"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white"
+            style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M15 18l-6-6 6-6" />
@@ -432,9 +333,11 @@ export default function PillarsSection() {
                 type="button"
                 onClick={() => goTo(index)}
                 aria-label={`Go to ${pillar.title}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? "w-6 bg-amber-300" : "w-1.5 bg-white/20"
-                }`}
+                className="h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  width: index === activeIndex ? "1.5rem" : "0.375rem",
+                  backgroundColor: index === activeIndex ? COLORS.cyan : "rgba(255,255,255,0.2)",
+                }}
               />
             ))}
           </div>
@@ -442,7 +345,8 @@ export default function PillarsSection() {
             type="button"
             onClick={goNext}
             aria-label="Next pillar"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white"
+            style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M9 18l6-6-6-6" />
@@ -457,9 +361,11 @@ export default function PillarsSection() {
               type="button"
               onClick={() => goTo(index)}
               aria-label={`Go to ${pillar.title}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                index === activeIndex ? "w-6 bg-amber-300" : "w-1.5 bg-white/20"
-              }`}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: index === activeIndex ? "1.5rem" : "0.375rem",
+                backgroundColor: index === activeIndex ? COLORS.cyan : "rgba(255,255,255,0.2)",
+              }}
             />
           ))}
         </div>

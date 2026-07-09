@@ -32,13 +32,13 @@ const PAST = [
 
 export default function EventsPage() {
   return (
-    <main className="flex-1 bg-white pb-28 text-zinc-950">
+    <main className="flex-1 bg-white pb-28" style={{color: "#27272A"}}>
       <EventsHero />
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
         {/* Upcoming */}
-        <section className="mt-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+        <section className="mt-28" style={{color: "#27272A"}}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em]">
             Upcoming
           </p>
           <h2 className="mt-3 text-subhead font-semibold tracking-tight">
@@ -64,7 +64,8 @@ export default function EventsPage() {
                 <p className="text-sm leading-relaxed text-zinc-500">{event.body}</p>
                 <a
                   href="mailto:hello@iphipi.com?subject=Meeting request — CES 2027"
-                  className="justify-self-start rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 md:justify-self-end"
+                  className="justify-self-start rounded-full px-5 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 md:justify-self-end"
+                  style={{backgroundColor: "#27272A"}}
                 >
                   Request a meeting
                 </a>
@@ -75,7 +76,7 @@ export default function EventsPage() {
 
         {/* Past */}
         <section className="mt-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{color: "#27272A"}}>
             Past events
           </p>
           <h2 className="mt-3 text-subhead font-semibold tracking-tight">
@@ -99,7 +100,7 @@ export default function EventsPage() {
                 </div>
                 <div className="flex flex-col justify-center p-6 sm:p-10">
                   <p className="text-2xl font-semibold tracking-tight">{event.name}</p>
-                  <p className="mt-1 text-sm text-zinc-500">
+                  <p className="mt-1 text-sm" style={{color: "#27272A"}}>
                     {event.date} · {event.location}
                   </p>
                   <p className="mt-4 leading-relaxed text-zinc-500">{event.body}</p>
@@ -110,7 +111,7 @@ export default function EventsPage() {
         </section>
 
         {/* Private demo CTA */}
-        <section className="mt-28 rounded-xl bg-zinc-950 p-8 text-white sm:p-12">
+        <section className="mt-28 rounded-xl p-8 text-white sm:p-12" style={{backgroundColor: "#27272A"}}>
           <h2 className="max-w-xl text-subhead font-semibold tracking-tight">
             Can&apos;t make it to a show?
           </h2>
@@ -120,7 +121,8 @@ export default function EventsPage() {
           </p>
           <a
             href="mailto:hello@iphipi.com?subject=Private demo request"
-            className="mt-8 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-zinc-200"
+            className="mt-8 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-medium transition hover:bg-zinc-200"
+            style={{color: "#27272A"}}
           >
             Request a private demo
           </a>

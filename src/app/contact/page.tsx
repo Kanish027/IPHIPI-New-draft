@@ -27,7 +27,7 @@ const SOCIALS = [
 
 export default function ContactPage() {
   return (
-    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-[#121212] lg:px-6">
+    <main className="flex-1 bg-white px-4 pb-28 pt-44 text-[#27272A] lg:px-6">
       <div className="mx-auto w-full max-w-6xl">
         {/* Page header */}
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">

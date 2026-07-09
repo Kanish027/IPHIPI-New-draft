@@ -79,7 +79,7 @@ export default function Navbar() {
         }`}
       >
         <div
-          className="pointer-events-auto relative mx-auto overflow-hidden rounded-xl border border-zinc-200/80 bg-white/85 text-[#121212] backdrop-blur-2xl transition-[width] duration-500 ease-in-out [--menu-width-closed:100%] [--menu-width-open:100%] sm:[--menu-width-closed:330px] sm:[--menu-width-open:50vw] md:[--menu-width-open:70vw] xl:[--menu-width-open:50vw]"
+          className="pointer-events-auto relative mx-auto overflow-hidden rounded-xl border border-zinc-200/80 bg-white/85 text-[#27272A] backdrop-blur-2xl transition-[width] duration-500 ease-in-out [--menu-width-closed:100%] [--menu-width-open:100%] sm:[--menu-width-closed:330px] sm:[--menu-width-open:50vw] md:[--menu-width-open:70vw] xl:[--menu-width-open:50vw]"
           style={{
             width: open ? "var(--menu-width-open)" : "var(--menu-width-closed)",
           }}
@@ -116,7 +116,7 @@ export default function Navbar() {
                 onClick={() => setOpen((v) => !v)}
                 className="group relative h-[60px] w-[60px] cursor-pointer p-5"
               >
-                <div className="absolute inset-0 m-2.5 flex items-center justify-center rounded-lg transition-colors duration-200 group-hover:bg-[#121212]/5" />
+                <div className="absolute inset-0 m-2.5 flex items-center justify-center rounded-lg transition-colors duration-200 group-hover:bg-[#27272A]/5" />
                 <span
                   className="absolute left-1/2 top-1/2 h-[2px] w-[20px] rounded-full bg-current transition-transform duration-300"
                   style={{

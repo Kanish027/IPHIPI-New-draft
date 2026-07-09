@@ -2,6 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const COLORS = {
+  cognitiveBlue: "#1E3A8A", // Primary
+  cyan: "#22D3EE", // Accent
+  charcoalText: "#27272A", // Heading text (kept — matches Matte Charcoal family)
+  bodyText: "#6E6659", // Muted body copy on light background
+};
+
 const STATS = [
   {
     label: "Noise Types Suppressed",
@@ -86,13 +93,22 @@ export default function BenchmarksSection() {
 
   return (
     <section ref={sectionRef} className="relative h-[420vh] bg-white">
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden text-[#121212]">
+      <div
+        className="sticky top-0 flex h-screen flex-col overflow-hidden"
+        style={{ color: COLORS.charcoalText }}
+      >
         {/* Header */}
         <div className="mx-auto w-full max-w-6xl px-4 pt-24 lg:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.2em]"
+            style={{ color: COLORS.cyan }}
+          >
             Benchmark Analysis
           </p>
-          <h2 className="mt-3 text-subhead font-semibold tracking-tight">
+          <h2
+            className="mt-3 text-subhead font-semibold tracking-tight"
+            style={{ color: COLORS.charcoalText }}
+          >
             Engineered to Industry-Leading Standards
           </h2>
         </div>
@@ -114,20 +130,35 @@ export default function BenchmarksSection() {
                 }}
               >
                 <p className="flex items-baseline gap-4">
-                  <span className="font-geometric text-sm text-[#D4AF37]">
+                  <span
+                    className="font-geometric text-sm"
+                    style={{ color: COLORS.cyan }}
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                  <span
+                    className="text-sm font-semibold uppercase tracking-[0.2em]"
+                    style={{ color: COLORS.bodyText }}
+                  >
                     {stat.label}
                   </span>
                 </p>
-                <p className="mt-2 font-geometric text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums">
+                <p
+                  className="mt-2 font-geometric text-[clamp(5rem,17vw,15rem)] font-semibold leading-[0.95] tracking-tighter tabular-nums"
+                  style={{ color: COLORS.cognitiveBlue }}
+                >
                   {stat.value}
-                  <span className="ml-2 align-top text-[0.35em] font-semibold text-[#D4AF37]">
+                  <span
+                    className="ml-2 align-top text-[0.35em] font-semibold"
+                    style={{ color: COLORS.cyan }}
+                  >
                     {stat.suffix}
                   </span>
                 </p>
-                <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-500">
+                <p
+                  className="mt-4 max-w-md text-base leading-relaxed"
+                  style={{ color: COLORS.bodyText }}
+                >
                   {stat.desc}
                 </p>
               </div>
@@ -144,20 +175,19 @@ export default function BenchmarksSection() {
                 className="group flex cursor-pointer items-center gap-3"
               >
                 <span
-                  className={`font-geometric text-[10px] transition-colors duration-300 ${
-                    i === active
-                      ? "text-[#D4AF37]"
-                      : "text-zinc-400 group-hover:text-zinc-600"
-                  }`}
+                  className="font-geometric text-[10px] transition-colors duration-300"
+                  style={{
+                    color: i === active ? COLORS.cyan : "#A1A1AA",
+                  }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
-                  className={`h-px transition-all duration-300 ${
-                    i === active
-                      ? "w-10 bg-[#D4AF37]"
-                      : "w-5 bg-zinc-300 group-hover:bg-zinc-500"
-                  }`}
+                  className="h-px transition-all duration-300"
+                  style={{
+                    width: i === active ? "2.5rem" : "1.25rem",
+                    backgroundColor: i === active ? COLORS.cyan : "#D4D4D8",
+                  }}
                 />
               </button>
             ))}
@@ -169,9 +199,11 @@ export default function BenchmarksSection() {
           {WAVE_BARS.map((h, i) => (
             <span
               key={i}
-              className="w-1 origin-bottom rounded-full bg-[#D4AF37]/40"
+              className="w-1 origin-bottom rounded-full"
               style={{
                 height: `${h * 0.5}px`,
+                backgroundColor: COLORS.cyan,
+                opacity: 0.4,
                 animation: "iphipiWave 1.8s ease-in-out infinite",
                 animationDelay: `${i * 0.08}s`,
               }}
@@ -180,7 +212,10 @@ export default function BenchmarksSection() {
         </div>
 
         {/* Footnote */}
-        <p className="mx-auto w-full max-w-6xl px-4 pb-6 text-xs text-zinc-400 lg:px-6">
+        <p
+          className="mx-auto w-full max-w-6xl px-4 pb-6 text-xs"
+          style={{ color: COLORS.bodyText, opacity: 0.7 }}
+        >
           Optimized for indoor &amp; outdoor reverb — built for always-on edge AI.
         </p>
       </div>

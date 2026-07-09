@@ -4,22 +4,25 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-// PHI (humanist) — headings, nav, body. Matches the brand guide's example.
+// Reverted back to IBM Plex Sans with all weights and styles
 const phi = IBM_Plex_Sans({
   variable: "--font-phi",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-// IOTA (geometric) — numbers, metrics, technical labels.
 const iota = Space_Grotesk({
   variable: "--font-iota",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +40,11 @@ export default function RootLayout({
       lang="en"
       className={`${phi.variable} ${iota.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body 
+        className="font-sans min-h-full flex flex-col"
+        /* Keeping the inline style to ensure the font applies globally without relying on Tailwind */
+        style={{ fontFamily: "var(--font-phi), sans-serif" }}
+      >
         <Navbar />
         {children}
         <Footer />

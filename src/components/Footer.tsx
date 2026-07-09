@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const COLORS = {
+  cognitiveBlue: "#1E3A8A", // Primary
+  cyan: "#22D3EE", // Accent
+  charcoalText: "#27272A", // Heading text (kept — matches Matte Charcoal family)
+  bodyText: "#6E6659", // Muted body copy on light background
+};
+
 const EXPLORE = [
   { label: "Home", href: "/" },
   { label: "AI Technologies", href: "/ai-technologies" },
@@ -24,7 +31,10 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="px-4 pb-6 pt-20 text-white lg:px-6" style={{backgroundColor: "#0c388d"}}>
+    <footer
+      className="px-4 pb-6 pt-20 text-white lg:px-6"
+      style={{ backgroundColor: COLORS.cognitiveBlue }}
+    >
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
@@ -33,7 +43,7 @@ export default function Footer() {
               {/* brightness-0 invert renders the blue mark as white on dark */}
               <Image
                 src="/iphipi-primary.png"
-                alt=""
+                alt="IPHIPI"
                 width={32}
                 height={32}
                 className="brightness-0 invert"
@@ -42,7 +52,7 @@ export default function Footer() {
                 iphipi
               </span>
             </div>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-zinc-400">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
               The world&apos;s first agentic AI platform — turning hearables
               and wearables into proactive personal assistants.
             </p>
@@ -51,7 +61,9 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-300 transition-colors duration-300 hover:border-cyan-400 hover:text-cyan-400"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/15 px-4 py-2 text-sm text-white/70 transition-colors duration-300 hover:border-[#22D3EE] hover:text-[#22D3EE]"
                 >
                   {social.label}
                 </a>
@@ -61,7 +73,7 @@ export default function Footer() {
 
           {/* Explore */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
               Explore
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -69,7 +81,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-300 transition-colors hover:text-white"
+                    className="text-sm text-white/70 transition-colors duration-300 hover:text-[#22D3EE]"
                   >
                     {link.label}
                   </Link>
@@ -80,7 +92,7 @@ export default function Footer() {
 
           {/* R&D areas */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
               R&amp;D
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -88,7 +100,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-300 transition-colors hover:text-white"
+                    className="text-sm text-white/70 transition-colors duration-300 hover:text-[#22D3EE]"
                   >
                     {link.label}
                   </Link>
@@ -99,14 +111,14 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
               Get in touch
             </p>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <a
                   href="mailto:partnerships@iphipi.com"
-                  className="text-zinc-300 transition-colors hover:text-white"
+                  className="text-white/70 transition-colors duration-300 hover:text-[#22D3EE]"
                 >
                   partnerships@iphipi.com
                 </a>
@@ -114,21 +126,30 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:hello@iphipi.com"
-                  className="text-zinc-300 transition-colors hover:text-white"
+                  className="text-white/70 transition-colors duration-300 hover:text-[#22D3EE]"
                 >
                   hello@iphipi.com
                 </a>
               </li>
             </ul>
-            <p className="mt-6 inline-flex items-center gap-2 text-sm text-zinc-400">
-              <span className="h-2 w-2 animate-[blinking_0.75s_ease-in-out_infinite] rounded-full bg-[#D9A544]" />
+            <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/60">
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60"
+                  style={{ backgroundColor: COLORS.cyan }}
+                />
+                <span
+                  className="relative inline-flex h-2 w-2 rounded-full"
+                  style={{ backgroundColor: COLORS.cyan }}
+                />
+              </span>
               Launching 2026
             </p>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-zinc-500">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/40">
           <p>© 2026 IPHIPI Inc. All rights reserved.</p>
           <p>The voice intelligence company</p>
         </div>

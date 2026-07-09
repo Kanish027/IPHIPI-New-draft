@@ -1,46 +1,13 @@
-// const PARTNERS = [
-//   {
-//     name: "Mivi",
-//     body: "Premium audio experiences with advanced noise suppression",
-//   },
-//   {
-//     name: "HME",
-//     body: "Hearing enhancement with edge AI processing",
-//   },
-//   {
-//     name: "LAVA",
-//     body: "Feature phones & keypad phones with single mic noise suppression",
-//   },
-// ];
+"use client";
 
-// export default function PartnersSection() {
-//   return (
-//     <section className="px-4 py-28 lg:px-6">
-//       <div className="mx-auto max-w-6xl">
-//         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
-//           Our Partners
-//         </p>
-//         <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-//           Trusted by Industry Leaders
-//         </h2>
-//         <p className="mt-4 max-w-2xl text-zinc-500">
-//           IPHIPI partners with leading OEMs and consumer electronics brands —
-//           bringing agentic AI to millions of users worldwide.
-//         </p>
+// Brand palette — "Cognitive Partner" (Option 1)
+const COLORS = {
+  cognitiveBlueDeep: "#152A63", // Primary, darkened — section background
+  cyan: "#22D3EE", // Accent — replaces ad-hoc #00D2FF
+  techWhite: "#F5F7FA", // Neutral — headings / wordmarks
+  softGray: "#A0A4AC", // Neutral — body copy
+};
 
-//         <div className="mt-14 grid gap-10 sm:grid-cols-3">
-//           {PARTNERS.map((partner) => (
-//             <div key={partner.name}>
-//               {/* Wordmark placeholder — swap for partner logo assets */}
-//               <p className="text-2xl font-semibold tracking-tight">{partner.name}</p>
-//               <p className="mt-2 text-sm leading-relaxed text-zinc-500">{partner.body}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
 const PARTNERS = [
   {
     name: "Mivi",
@@ -64,26 +31,30 @@ const PARTNERS = [
 
 export default function PartnersSection() {
   return (
-    <section className="px-4 py-28 lg:px-6" style={{backgroundColor: "#121212"}}>
+    <section className="px-4 py-28 lg:px-6" style={{ backgroundColor: COLORS.cognitiveBlueDeep }}>
       <style>{`
         @keyframes iphipiWave {
           0%, 100% { transform: scaleY(0.45); }
           50% { transform: scaleY(1); }
         }
       `}</style>
-
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0FF0FC]">
+        <p
+          className="text-xs font-semibold uppercase tracking-[0.2em]"
+          style={{ color: COLORS.cyan }}
+        >
           Our Partners
         </p>
-        <h2 className="mt-3 text-headline font-semibold tracking-tight text-white">
+        <h2
+          className="mt-3 text-headline font-semibold tracking-tight"
+          style={{ color: COLORS.techWhite }}
+        >
           Trusted by Industry Leaders
         </h2>
-        <p className="mt-4 max-w-2xl text-zinc-400">
+        <p className="mt-4 max-w-2xl" style={{ color: COLORS.softGray }}>
           IPHIPI partners with leading OEMs and consumer electronics brands —
           bringing agentic AI to millions of users worldwide.
         </p>
-
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {PARTNERS.map((partner) => (
             <div
@@ -95,7 +66,7 @@ export default function PartnersSection() {
                 {partner.wave.map((h, i) => (
                   <span
                     key={i}
-                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-[#0FF0FC]"
+                    className="w-1 origin-bottom rounded-full bg-white/25 transition-colors duration-300 group-hover:bg-[#22D3EE]"
                     style={{
                       height: `${h}%`,
                       animation: "iphipiWave 1.8s ease-in-out infinite",
@@ -104,17 +75,20 @@ export default function PartnersSection() {
                   />
                 ))}
               </div>
-
-              <span className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide text-zinc-400 transition-colors duration-300 group-hover:border-[#0FF0FC]/40 group-hover:text-[#0FF0FC]">
+              <span
+                className="inline-flex w-fit items-center rounded-full border border-white/15 px-3 py-1 text-xs font-medium uppercase tracking-wide transition-colors duration-300 group-hover:border-[#22D3EE]/40 group-hover:text-[#22D3EE]"
+                style={{ color: COLORS.softGray }}
+              >
                 {partner.tag}
               </span>
-
               {/* Wordmark placeholder — swap for partner logo assets */}
-              <p className="mt-5 text-3xl font-semibold tracking-tight text-white">
+              <p
+                className="mt-5 text-3xl font-semibold tracking-tight"
+                style={{ color: COLORS.techWhite }}
+              >
                 {partner.name}
               </p>
-
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: COLORS.softGray }}>
                 {partner.body}
               </p>
             </div>

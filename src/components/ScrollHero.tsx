@@ -36,7 +36,7 @@ function HeroText({
   return (
     <div
       className={`absolute inset-x-0 top-[18vh] flex flex-col items-center gap-10 px-4 text-center ${
-        variant === "dark" ? "text-[#121212]" : "text-white"
+        variant === "dark" ? "text-[#27272A]" : "text-white"
       }`}
     >
       <div className="text-base font-medium leading-relaxed">
@@ -119,7 +119,7 @@ export default function ScrollHero(props: ScrollHeroProps) {
         {/* Banner, expanding from an inset band to full-bleed. Video on the
             homepage; a static image on subpages (no videoSrc). */}
         <div
-          className="absolute bottom-0 overflow-hidden bg-[#121212]"
+          className="absolute bottom-0 overflow-hidden bg-[#27272A]"
           style={{
             top: `${topVh}vh`,
             left: side,

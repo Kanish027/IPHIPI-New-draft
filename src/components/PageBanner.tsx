@@ -30,7 +30,8 @@ export default function PageBanner({
         </span>
 
         <h1
-          className={`mt-7 font-semibold leading-[1.04] tracking-tight text-zinc-950 ${titleClassName}`}
+          className={`mt-7 font-semibold leading-[1.04] tracking-tight ${titleClassName}`}
+          style={{color: "#27272A"}}
         >
           {title}
         </h1>

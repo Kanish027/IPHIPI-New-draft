@@ -318,7 +318,7 @@ const SpeakerIcon = (
 
 export default function ResearchPage() {
   return (
-    <main className="flex-1 bg-white pb-28 text-[#121212]">
+    <main className="flex-1 bg-white pb-28 text-[#27272A]">
       <ResearchHero />
 
       <div className="mx-auto max-w-6xl px-4 lg:px-6">
@@ -365,7 +365,7 @@ export default function ResearchPage() {
 
           {/* Technology visualization cards — dark panel, matching the dark
               sections on the AI Technologies page */}
-          <div className="mt-10 rounded-xl p-6 text-white sm:p-8" style={{backgroundColor: "#121212"}}>
+          <div className="mt-10 rounded-xl p-6 text-white sm:p-8" style={{backgroundColor: "#27272A"}}>
             <div className="grid gap-4 md:grid-cols-3">
               <TechCard
                 icon={<>{MicIcon}<span className="text-xs font-medium">Speech Enhancement</span></>}
