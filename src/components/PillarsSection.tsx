@@ -222,7 +222,7 @@ export default function PillarsSection() {
     >
       {/* Primary — Deep Cognitive Blue ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div
+        {/* <div
           className="absolute left-[-8rem] top-[-8rem] h-80 w-80 rounded-full blur-3xl"
           style={{ backgroundColor: `${COLORS.cognitiveBlue}22` }}
         />
@@ -233,7 +233,7 @@ export default function PillarsSection() {
         <div
           className="absolute bottom-[-10rem] left-1/3 h-80 w-80 rounded-full blur-3xl"
           style={{ backgroundColor: `${COLORS.cognitiveBlue}14` }}
-        />
+        /> */}
       </div>
 
       <div className="relative mx-auto max-w-6xl">
